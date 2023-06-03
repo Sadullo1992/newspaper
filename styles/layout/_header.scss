@@ -1,0 +1,14 @@
+.header {
+  padding: 20px 0;
+  background-color: $green;
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+}

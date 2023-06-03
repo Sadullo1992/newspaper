@@ -1,0 +1,33 @@
+.btn {
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  &--link {
+    padding: 8px 24px;
+    @include bodytext;
+    color: $white;
+    border-radius: 50px;
+    background-color: $green;
+    transition: all 0.3s linear;
+    &:hover {
+      color: $green;
+      background-color: $light;
+    }
+  }
+  &--arrow {
+    @include flexcenter;
+    padding-right: 10px;
+    gap: 4px;
+    svg {
+      transition: all 0.3s linear;
+      fill: $white;
+    }
+    &:hover {
+      svg {
+        fill: $green;
+      }
+    }
+  }
+}
