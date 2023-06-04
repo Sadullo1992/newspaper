@@ -1,0 +1,73 @@
+.modal {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  @include flexcenter;
+  z-index: 10;
+  display: none;
+  &__content {
+    background-color: $white;
+    border-radius: 50px;
+    padding: 80px 88px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px 24px;
+    position: relative;
+    .btn--modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+  }
+  &__menu-item {
+    text-decoration: none;
+    max-width: 158px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    &__img-wrap {
+      @include flexcenter;
+      background-color: $white;
+      height: 140px;
+      width: 140px;
+      border-radius: 24px;
+      box-shadow: 4px 8px 25px rgba(33, 154, 108, 0.08);
+      transition: background-color 0.1s linear;
+    }
+    &__title {
+      @include h3;
+      color: $black;
+      text-align: center;
+      transition: color 0.1s linear;
+    }
+    &:hover &__img-wrap {
+      background-color: $green-lighter;
+    }
+    &:hover &__title {
+      color: $green;
+    }
+  }
+  &--active {
+    display: flex;
+  }
+  &--active ~ .dark-layer {
+    opacity: 1;
+    z-index: 9;
+  }
+}
+
+.dark-layer {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba($color: #000000, $alpha: 0.7);
+  opacity: 0;
+  z-index: -3;
+  transition: all 0.3s linear;
+}

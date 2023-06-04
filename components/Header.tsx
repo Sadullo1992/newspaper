@@ -2,6 +2,7 @@ import ArrowIcon from './ArrowIcon';
 import Button from './Button';
 import Dropdown from './Dropdown';
 import Logo from './Logo';
+import Modal from './Modal';
 
 export default function Header() {
   return (
@@ -21,6 +22,7 @@ export default function Header() {
             </nav>
             <Dropdown />
           </div>
+          <Modal />
         </div>
       </div>
     </header>
