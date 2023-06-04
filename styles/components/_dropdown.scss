@@ -1,0 +1,42 @@
+.dropdown {
+  position: relative;
+  &--active {
+    .dropdown__select {
+      display: block;
+    }
+    .btn--dropdown {
+      border-radius: 16px 16px 0 0;
+      background-color: $light;
+      color: $gray;
+      svg {
+        fill: $gray;
+        transform: rotate(-90deg);
+      }
+    }
+  }
+  &__select {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    z-index: 2;
+    list-style-type: none;
+    border-radius: 16px;
+    background-color: $light;
+    &__item {
+      padding: 8px 24px;
+      background-color: $light;
+      transition: background-color 0.3s linear;
+      cursor: pointer;
+      color: $black;
+      @include bodytext;
+      &:hover {
+        background-color: $green-lighter;
+      }
+      &:last-of-type {
+        border-radius: 0 0 16px 16px;
+      }
+    }
+  }
+}

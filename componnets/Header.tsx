@@ -1,5 +1,6 @@
 import ArrowIcon from './ArrowIcon';
 import Button from './Button';
+import Dropdown from './Dropdown';
 import Logo from './Logo';
 
 export default function Header() {
@@ -18,7 +19,7 @@ export default function Header() {
                 <ArrowIcon />
               </Button>
             </nav>
-            <div>O&#39;zbek (Lotin)</div>
+            <Dropdown />
           </div>
         </div>
       </div>

@@ -30,4 +30,18 @@
       }
     }
   }
+  &--dropdown {
+    @include bodytext;
+    @include flexcenter;
+    padding: 8px 10px 8px 24px;
+    color: $white;
+    border-radius: 50px;
+    background-color: #219a6c;
+
+    gap: 4px;
+    svg {
+      fill: $white;
+      transform: rotate(90deg);
+    }
+  }
 }
