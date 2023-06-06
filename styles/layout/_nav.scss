@@ -1,4 +1,34 @@
 .nav {
   display: flex;
   gap: 20px;
+  .btn--link:nth-child(1) {
+    display: none;
+  }
+  @include tablet {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    padding-left: 40px;
+    z-index: 2;
+    overflow-x: auto;
+    width: 100%;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    .btn--link {
+      flex-shrink: 0;
+    }
+    .btn--link:nth-child(1) {
+      display: initial;
+    }
+  }
+  @include mobile {
+    top: 80px;
+    padding-left: 20px;
+  }
+  @include mobilesmall {
+    padding-left: 16px;
+  }
 }

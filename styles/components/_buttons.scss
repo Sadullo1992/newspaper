@@ -11,9 +11,25 @@
     border-radius: 50px;
     background-color: $green;
     transition: all 0.3s linear;
+    text-decoration: none;
     &:hover {
       color: $green;
       background-color: $light;
+    }
+    @include tablet {
+      color: $dark;
+      background-color: $light;
+      &:hover {
+        color: $dark;
+        background-color: $light;
+      }
+      &--active {
+        color: $white;
+        background-color: $green;
+      }
+    }
+    @include mobile {
+      padding: 6.5px 23px;
     }
   }
   &--arrow {

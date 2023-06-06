@@ -10,3 +10,12 @@ body {
   font-family: 'Inter', sans-serif;
   background-color: $white;
 }
+
+.logo {
+  width: 262px;
+  height: 25px;
+  @include mobile {
+    width: 152px;
+    height: 14.5px;
+  }
+}

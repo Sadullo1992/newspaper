@@ -1,5 +1,12 @@
 .container {
   margin: 0 auto;
+  padding: 0 40px;
   max-width: 1200px;
   width: 100%;
+  @include mobile {
+    padding: 0 20px;
+  }
+  @include mobilesmall {
+    padding: 0 16px;
+  }
 }

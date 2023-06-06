@@ -13,12 +13,29 @@
     padding: 80px 88px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
     gap: 40px 24px;
     position: relative;
     .btn--modal-close {
       position: absolute;
       top: 20px;
       right: 20px;
+      @include mobile {
+        top: 10px;
+        right: 10px;
+      }
+    }
+    @include tablet {
+      padding: 60px 50px;
+      gap: 24px;
+      max-width: 600px;
+    }
+    @include mobile {
+      padding: 40px 16px;
+      gap: 20px 14px;
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 360px;
+      border-radius: 24px;
     }
   }
   &__menu-item {
@@ -37,18 +54,33 @@
       border-radius: 24px;
       box-shadow: 4px 8px 25px rgba(33, 154, 108, 0.08);
       transition: background-color 0.1s linear;
+      @include tablet {
+        height: 100px;
+        width: 100px;
+        svg {
+          transform: scale(0.65);
+        }
+      }
     }
     &__title {
       @include h3;
       color: $black;
       text-align: center;
       transition: color 0.1s linear;
+      @include mobile {
+        font-size: 14px;
+        line-height: 1.5;
+        font-weight: 600;
+      }
     }
     &:hover &__img-wrap {
       background-color: $green-lighter;
     }
     &:hover &__title {
       color: $green;
+    }
+    @include mobile {
+      gap: 8px;
     }
   }
   &--active {
@@ -66,7 +98,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba($color: #000000, $alpha: 0.7);
+  background-color: rgba($color: #000000, $alpha: 0.3);
   opacity: 0;
   z-index: -3;
   transition: all 0.3s linear;
