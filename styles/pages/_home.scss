@@ -1,5 +1,9 @@
 .home {
   padding: 40px 0 80px;
+  @include tablet {
+    padding-top: 0;
+    padding-bottom: 130px;
+  }
 }
 
 // intro
@@ -9,6 +13,7 @@
       width: 100%;
       height: auto;
       aspect-ratio: auto 16 / 9;
+      display: block;
     }
   }
   &__articles {
@@ -19,12 +24,21 @@
       flex-direction: row;
       width: 100%;
     }
+    @include mobile {
+      display: none;
+    }
   }
 }
 
 // Latest news
 .latest-news {
   padding-top: 80px;
+  @include desktop {
+    padding-top: 0;
+  }
+  @include mobile {
+    padding-top: 60px;
+  }
   &__title {
     @include h2;
     color: $black;
@@ -32,6 +46,9 @@
     margin-bottom: 24px;
     @include desktop {
       text-align: left;
+    }
+    @include mobile {
+      margin-bottom: 20px;
     }
   }
   &__grid {
@@ -41,19 +58,46 @@
     @include desktop {
       grid-template-columns: repeat(2, 1fr);
     }
+    @include mobile {
+      grid-template-columns: none;
+      gap: 20px;
+    }
   }
 }
 
 .actual-news {
   padding-top: 90px;
+  @include desktop {
+    padding-top: 0;
+  }
+  @include mobile {
+    padding-top: 20px;
+  }
   &__title {
     @include h3;
     color: $black;
     margin-bottom: 24px;
+    @include desktop {
+      margin-bottom: 12px;
+    }
   }
   &__grid {
     display: flex;
     flex-direction: column;
     gap: 14px;
+    @include desktop {
+      flex-direction: row;
+      gap: 12px;
+      overflow-x: auto;
+      .actual-article {
+        flex-basis: 348px;
+        flex-shrink: 0;
+      }
+    }
+    @include desktop {
+      .actual-article {
+        flex-basis: 340px;
+      }
+    }
   }
 }
