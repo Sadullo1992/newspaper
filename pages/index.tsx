@@ -33,7 +33,6 @@ export default function Home() {
                 <Article />
                 <Article />
                 <Article />
-                <Article />
               </div>
             </div>
             <div className="actual-news main-grid__item2">
