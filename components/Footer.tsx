@@ -1,10 +1,37 @@
+import { useEffect, useRef, useState } from 'react';
+import Button from './Button';
 import Logo from './Logo';
+import MenuIcon from './MenuIcon';
 
 export default function Footer() {
+  const footerRef = useRef<HTMLElement>(null);
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
+
+  const handleScroll = () => {
+    const el = footerRef.current;
+    if (el?.getBoundingClientRect()) {
+      if (el?.getBoundingClientRect()?.top >= window.innerHeight) {
+        setIsMenuVisible(true);
+      } else {
+        setIsMenuVisible(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   return (
-    <footer className="footer">
+    <footer className="footer" ref={footerRef}>
       <div className="container">
         <div className="footer__inner">
+          {isMenuVisible && (
+            <Button className="mobile-menu">
+              <MenuIcon />
+              <span>Bo&#39;limlar</span>
+            </Button>
+          )}
           <div className="footer__logo__wrapper">
             <Logo className="footer__logo" />
           </div>

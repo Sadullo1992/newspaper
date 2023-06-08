@@ -5,7 +5,6 @@ import Button from './Button';
 import Dropdown from './Dropdown';
 import Logo from './Logo';
 import Modal from './Modal';
-import MenuIcon from './MenuIcon';
 const MediaQuery = dynamic(() => import('react-responsive'), {
   ssr: false,
 });
@@ -46,10 +45,6 @@ export default function Header() {
               <Button className="btn--link btn--arrow">
                 <span>Barchasi</span>
                 <ArrowIcon />
-              </Button>
-              <Button className="mobile-menu">
-                <MenuIcon />
-                <span>Bo&#39;limlar</span>
               </Button>
             </nav>
             <Dropdown />

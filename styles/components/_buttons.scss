@@ -61,3 +61,29 @@
     }
   }
 }
+
+.mobile-menu {
+  position: fixed;
+  bottom: 24px;
+  z-index: 4;
+  color: $white;
+  background-color: $green;
+  padding: 8px 24px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 25.2px;
+  @include flexcenter;
+  display: none;
+  gap: 14px;
+  border-radius: 52px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), rgba(37, 174, 122, 0.8);
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.2);
+  left: 50%;
+  transform: translateX(-50%);
+  svg {
+    fill: $white;
+  }
+  @include tablet {
+    display: flex;
+  }
+}
