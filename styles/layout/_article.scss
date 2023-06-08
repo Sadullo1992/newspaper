@@ -52,3 +52,20 @@
     }
   }
 }
+
+// Actual news
+.actual-article {
+  height: 94px;
+  padding: 14px 20px;
+  background-color: $light;
+  border-radius: 9px;
+  transform: background-color 0.3s linear;
+  cursor: pointer;
+  &__title {
+    @include subtitle;
+    color: $black;
+  }
+  &:hover {
+    background-color: $green-lighter;
+  }
+}
