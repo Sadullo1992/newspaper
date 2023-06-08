@@ -34,9 +34,6 @@
 .latest-news {
   padding-top: 80px;
   @include desktop {
-    padding-top: 0;
-  }
-  @include mobile {
     padding-top: 60px;
   }
   &__title {

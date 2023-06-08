@@ -59,6 +59,9 @@
     z-index: -2;
     opacity: 0;
     transition: all 0.2s linear;
+    @include mobile {
+      display: none;
+    }
   }
   &:hover .article__title {
     color: $dark;
