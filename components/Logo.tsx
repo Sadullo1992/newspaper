@@ -1,11 +1,17 @@
+import Link from 'next/link';
+
 type LogoProps = {
   className: string;
 };
 
 export default function Logo({ className }: LogoProps) {
+  return <Link href={'/'}>{logoIcon(className)}</Link>;
+}
+
+function logoIcon(classname: string) {
   return (
     <svg
-      className={className}
+      className={classname}
       viewBox="0 0 262 25"
       enableBackground="new 0 0 262 25"
       fill="none"

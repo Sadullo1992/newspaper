@@ -1,3 +1,5 @@
+import { useAppDispatch } from '@/redux/hooks';
+import { showModal } from '@/redux/modalSlice';
 import { useEffect, useRef, useState } from 'react';
 import Button from './Button';
 import Logo from './Logo';
@@ -6,6 +8,7 @@ import MenuIcon from './MenuIcon';
 export default function Footer() {
   const footerRef = useRef<HTMLElement>(null);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const dispatch = useAppDispatch();
 
   const handleScroll = () => {
     const el = footerRef.current;
@@ -27,7 +30,7 @@ export default function Footer() {
       <div className="container">
         <div className="footer__inner">
           {isMenuVisible && (
-            <Button className="mobile-menu">
+            <Button className="mobile-menu" onClick={() => dispatch(showModal({ isModal: true }))}>
               <MenuIcon />
               <span>Bo&#39;limlar</span>
             </Button>
