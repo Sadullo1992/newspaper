@@ -1,8 +1,10 @@
 import { combineReducers, configureStore, PreloadedState } from '@reduxjs/toolkit';
 import modalReducer from './modalSlice';
+import { settingsReducer } from './settings';
 
 const rootReducer = combineReducers({
   modal: modalReducer,
+  settings: settingsReducer,
 });
 export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
   return configureStore({

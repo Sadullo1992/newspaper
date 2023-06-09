@@ -12,3 +12,11 @@ export const AppCategories = [
 export type AppCategory = (typeof AppCategories)[number];
 
 export type IModal = { isModal: boolean };
+
+export interface ISettings {
+  language: AppLanguage;
+}
+
+export const AppLanguages = ['lotin', 'krill'] as const;
+
+export type AppLanguage = (typeof AppLanguages)[number];
