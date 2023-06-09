@@ -2,10 +2,15 @@ import dynamic from 'next/dynamic';
 import ArrowIcon from './ArrowIcon';
 import Button from './Button';
 import { APP_CATEGORIES } from '@/constants/categories';
+import { useAppDispatch } from '@/redux/hooks';
+import { showModal } from '@/redux/modalSlice';
+
 const MediaQuery = dynamic(() => import('react-responsive'), {
   ssr: false,
 });
+
 export default function Nav() {
+  const dispatch = useAppDispatch();
   const appCategories = Object.entries(APP_CATEGORIES);
   return (
     <nav className="nav">
@@ -33,7 +38,10 @@ export default function Nav() {
           </Button>
         ))}
       </MediaQuery>
-      <Button className="btn--link btn--arrow">
+      <Button
+        className="btn--link btn--arrow"
+        onClick={() => dispatch(showModal({ isModal: true }))}
+      >
         <span>Barchasi</span>
         <ArrowIcon />
       </Button>

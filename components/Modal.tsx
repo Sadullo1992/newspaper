@@ -1,16 +1,27 @@
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { selectModalState } from '@/redux/modalSlice';
+import { showModal } from '@/redux/modalSlice';
+import clsx from 'clsx';
 import Button from './Button';
 import { APP_CATEGORIES } from '@/constants/categories';
 import GetMenuIcon from '@/utils/GetMenuIcon';
 import Link from 'next/link';
 
 export default function Modal() {
+  const { isModal } = useAppSelector(selectModalState);
+  const dispatch = useAppDispatch();
+  const closeModal = () => {
+    dispatch(showModal({ isModal: false }));
+  };
   return (
     <>
-      <div className="modal">
+      <div className={clsx('modal', isModal && 'modal--active')}>
         <div className="modal__content">
-          <Button className="btn--modal-close">{closeIcon()}</Button>
+          <Button className="btn--modal-close" onClick={closeModal}>
+            {closeIcon()}
+          </Button>
           {Object.entries(APP_CATEGORIES).map(([category, desc]) => (
-            <Link href={category} key={category} className="modal__menu-item">
+            <Link href={category} key={category} className="modal__menu-item" onClick={closeModal}>
               <div className="modal__menu-item__img-wrap">
                 <GetMenuIcon type={category} />
               </div>
@@ -19,7 +30,7 @@ export default function Modal() {
           ))}
         </div>
       </div>
-      <div className="dark-layer"></div>
+      <div className="dark-layer" onClick={closeModal}></div>
     </>
   );
 }

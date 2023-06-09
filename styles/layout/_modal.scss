@@ -1,10 +1,8 @@
 .modal {
-  height: 100%;
-  width: 100%;
   position: fixed;
-  top: 0;
-  left: 0;
-  @include flexcenter;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 10;
   display: none;
   &__content {
@@ -84,7 +82,7 @@
     }
   }
   &--active {
-    display: flex;
+    display: block;
   }
   &--active ~ .dark-layer {
     opacity: 1;
