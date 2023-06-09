@@ -10,3 +10,5 @@ export const AppCategories = [
 ] as const;
 
 export type AppCategory = (typeof AppCategories)[number];
+
+export type IModal = { isModal: boolean };
