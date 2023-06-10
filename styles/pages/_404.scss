@@ -1,0 +1,20 @@
+.not-found {
+  height: calc(100vh - 200px);
+  @include flexcenter;
+  &__inner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    p {
+      padding: 16px;
+      border-left: 1px solid $green;
+    }
+  }
+  &__link {
+    text-decoration: none;
+    color: $green;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
