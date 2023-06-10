@@ -4,6 +4,7 @@ import Button from './Button';
 import { APP_CATEGORIES } from '@/constants/categories';
 import { useAppDispatch } from '@/redux/hooks';
 import { showModal } from '@/redux/modalSlice';
+import NavLink from './NavLink';
 
 const MediaQuery = dynamic(() => import('react-responsive'), {
   ssr: false,
@@ -14,28 +15,28 @@ export default function Nav() {
   const appCategories = Object.entries(APP_CATEGORIES);
   return (
     <nav className="nav">
-      <Button href="/" className="btn--link btn--link--active">
+      <NavLink href="/" className="btn--link">
         Asosiy
-      </Button>
+      </NavLink>
       <MediaQuery minWidth={1280}>
         {appCategories.slice(0, 3).map(([category, desc]) => (
-          <Button href={category} key={category} className="btn--link">
+          <NavLink href={`/categories/${category}`} key={category} className="btn--link">
             {desc}
-          </Button>
+          </NavLink>
         ))}
       </MediaQuery>
       <MediaQuery minWidth={991} maxWidth={1280}>
         {appCategories.slice(0, 2).map(([category, desc]) => (
-          <Button href={category} key={category} className="btn--link">
+          <NavLink href={`/categories/${category}`} key={category} className="btn--link">
             {desc}
-          </Button>
+          </NavLink>
         ))}
       </MediaQuery>
       <MediaQuery maxWidth={991}>
         {appCategories.map(([category, desc]) => (
-          <Button href={category} key={category} className="btn--link">
+          <NavLink href={`/categories/${category}`} key={category} className="btn--link">
             {desc}
-          </Button>
+          </NavLink>
         ))}
       </MediaQuery>
       <Button

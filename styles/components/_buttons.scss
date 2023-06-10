@@ -17,6 +17,7 @@
       background-color: $light;
     }
     @include tablet {
+      transition: none;
       color: $dark;
       background-color: $light;
       &:hover {
@@ -26,6 +27,10 @@
       &--active {
         color: $white;
         background-color: $green;
+        &:hover {
+          color: $white;
+          background-color: $green;
+        }
       }
     }
     @include mobile {

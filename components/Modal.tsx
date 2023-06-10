@@ -21,7 +21,12 @@ export default function Modal() {
             {closeIcon()}
           </Button>
           {Object.entries(APP_CATEGORIES).map(([category, desc]) => (
-            <Link href={category} key={category} className="modal__menu-item" onClick={closeModal}>
+            <Link
+              href={`/categories/${category}`}
+              key={category}
+              className="modal__menu-item"
+              onClick={closeModal}
+            >
               <div className="modal__menu-item__img-wrap">
                 <GetMenuIcon type={category} />
               </div>
