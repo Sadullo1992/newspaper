@@ -65,6 +65,25 @@
       transform: rotate(90deg);
     }
   }
+  &--carousel {
+    height: 32px;
+    width: 32px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(5px);
+    .next {
+      transform: rotate(180deg);
+    }
+    .prev,
+    .next {
+      // fill: #747474;
+      fill: $white;
+      transition: fill 0.2s linear;
+      &:hover {
+        fill: $white;
+      }
+    }
+  }
 }
 
 .mobile-menu {

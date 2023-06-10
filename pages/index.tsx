@@ -1,11 +1,10 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import banner from '@/assets/images/banner.png';
 import Article from '@/components/Article';
 import { useAppSelector } from '@/redux/hooks';
 import { selectPosts } from '@/redux/posts';
 import ActualList from '@/components/ActualList';
 import MainList from '@/components/MainList';
+import Carousel from '@/components/Carousel';
 
 export default function Home() {
   const { posts } = useAppSelector(selectPosts);
@@ -18,7 +17,7 @@ export default function Home() {
         <div className="container">
           <div className="intro main-grid">
             <div className="intro__slider main-grid__item1">
-              <Image src={banner} alt="slider image" />
+              <Carousel posts={posts.slice(0, 4)} />
             </div>
             <div className="intro__articles main-grid__item2">
               {posts.slice(1, 3).map((item) => (

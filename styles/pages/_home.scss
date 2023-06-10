@@ -8,14 +8,6 @@
 
 // intro
 .intro {
-  &__slider {
-    img {
-      width: 100%;
-      height: auto;
-      aspect-ratio: auto 16 / 9;
-      display: block;
-    }
-  }
   &__articles {
     display: flex;
     flex-direction: column;
