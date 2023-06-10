@@ -4,7 +4,9 @@
   &__inner {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 16px;
+    flex-wrap: wrap;
     p {
       padding: 16px;
       border-left: 1px solid $green;
