@@ -1,9 +1,13 @@
-export default function ActualArticle() {
+import { IPost } from '@/types/types';
+
+type ActualArticleProps = {
+  item: IPost;
+};
+
+export default function ActualArticle({ item }: ActualArticleProps) {
   return (
     <article className="actual-article">
-      <h3 className="actual-article__title">
-        O‘zbekiston va Singapur o‘rtasida 7 ta hamkorlik hujjati imzolandi
-      </h3>
+      <h3 className="actual-article__title">{item.title}</h3>
     </article>
   );
 }

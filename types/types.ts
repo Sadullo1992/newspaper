@@ -20,3 +20,20 @@ export interface ISettings {
 export const AppLanguages = ['lotin', 'krill'] as const;
 
 export type AppLanguage = (typeof AppLanguages)[number];
+
+export interface IPost {
+  id: string;
+  title: string;
+  description: string[];
+  published: string;
+  views: number;
+  actual: boolean;
+  author: string;
+  imgUrls: string[];
+  category: string;
+  tags?: string[];
+}
+
+export type TPosts = {
+  posts: IPost[];
+};

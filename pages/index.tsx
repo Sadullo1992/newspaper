@@ -2,9 +2,13 @@ import Head from 'next/head';
 import Image from 'next/image';
 import banner from '@/assets/images/banner.png';
 import Article from '@/components/Article';
-import ActualArticle from '@/components/ActualArticle';
+import { useAppSelector } from '@/redux/hooks';
+import { selectPosts } from '@/redux/posts';
+import ActualList from '@/components/ActualList';
+import MainList from '@/components/MainList';
 
 export default function Home() {
+  const { posts } = useAppSelector(selectPosts);
   return (
     <>
       <Head>
@@ -17,36 +21,17 @@ export default function Home() {
               <Image src={banner} alt="slider image" />
             </div>
             <div className="intro__articles main-grid__item2">
-              <Article />
-              <Article />
+              {posts.slice(1, 3).map((item) => (
+                <Article key={item.id} item={item} />
+              ))}
             </div>
           </div>
           <div className="main-grid">
             <div className="latest-news main-grid__item1">
               <h2 className="latest-news__title">Eng so&#39;ngi yangiliklar</h2>
-              <div className="latest-news__grid">
-                <Article />
-                <Article />
-                <Article />
-                <Article />
-                <Article />
-                <Article />
-                <Article />
-                <Article />
-              </div>
+              <MainList posts={posts.slice(3)} />
             </div>
-            <div className="actual-news main-grid__item2">
-              <h3 className="actual-news__title">Dolzarb</h3>
-              <div className="actual-news__grid">
-                <ActualArticle />
-                <ActualArticle />
-                <ActualArticle />
-                <ActualArticle />
-                <ActualArticle />
-                <ActualArticle />
-                <ActualArticle />
-              </div>
-            </div>
+            <ActualList />
           </div>
         </div>
       </section>

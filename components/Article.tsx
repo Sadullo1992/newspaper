@@ -1,16 +1,27 @@
 import Image from 'next/image';
-import articleImg from '@/assets/images/article-photo.png';
+import { IPost } from '@/types/types';
 
-export default function Article() {
+type ArticleProps = {
+  item: IPost;
+};
+
+export default function Article({ item }: ArticleProps) {
+  const { title, imgUrls, views, published } = item;
   return (
     <article className="article">
-      <Image src={articleImg} alt="article photo" className="article__photo" />
+      <Image
+        src={imgUrls[0]}
+        height={504}
+        width={894}
+        alt="article photo"
+        className="article__photo"
+      />
       <div className="article__body">
-        <h3 className="article__title">Aliment bu, farzand oldidagi majburiyat</h3>
+        <h3 className="article__title">{title}</h3>
         <div className="article__caption">
-          <span>571 kishi o‘qidi</span>
+          <span>{views} kishi o‘qidi</span>
           <span>/</span>
-          <span>22.05.2023</span>
+          <span>{published}</span>
         </div>
       </div>
     </article>
