@@ -1,6 +1,7 @@
 import { IPost } from '@/types/types';
 import clsx from 'clsx';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Button from './Button';
 import NavIcon from './NavIcon';
@@ -50,7 +51,7 @@ export default function Carousel({ posts }: CarouselProps) {
         }}
       >
         {posts.map((item) => (
-          <div key={item.id} className="carousel__item">
+          <Link href={`/posts/${item.id}`} key={item.id} className="carousel__item">
             <Image
               src={item.imgUrls[0]}
               height={502}
@@ -62,7 +63,7 @@ export default function Carousel({ posts }: CarouselProps) {
             <div className="carousel__item__bar">
               <h3 className="carousel__item__title">{item.title}</h3>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       <div className="carousel__nav">

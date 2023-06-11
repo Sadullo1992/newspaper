@@ -7,7 +7,9 @@ export default function Layout({ children }: PropsWithChildren) {
   return (
     <>
       <Header />
-      <p className="test">Bobotog&#39; tongi websayti test rejimida ishlayapti!</p>
+      <div className="test__wrapper">
+        <p className="test">Bobotog&#39; tongi websayti test rejimida ishlayapti!</p>
+      </div>
       <main>{children}</main>
       <Footer />
     </>
