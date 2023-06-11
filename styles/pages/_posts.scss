@@ -1,0 +1,12 @@
+.posts-page {
+  padding: 60px 0 80px;
+  @include tablet {
+    padding-top: 0;
+  }
+  .actual-news {
+    padding-top: 0;
+    @include mobile {
+      padding-top: 40px;
+    }
+  }
+}

@@ -57,6 +57,7 @@ export default function Carousel({ posts }: CarouselProps) {
               width={894}
               alt="slider image"
               className="carousel__item__photo"
+              priority
             />
             <div className="carousel__item__bar">
               <h3 className="carousel__item__title">{item.title}</h3>

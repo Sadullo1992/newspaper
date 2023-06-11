@@ -1,0 +1,32 @@
+.post {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  &__photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    display: block;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  &__title {
+    @include h2;
+    color: $black;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    p {
+      @include bodytext;
+      color: $dark;
+    }
+  }
+  &__author {
+    @include subtitle;
+    color: $black;
+    text-align: right;
+    font-weight: 600;
+  }
+}

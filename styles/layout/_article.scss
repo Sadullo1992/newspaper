@@ -87,6 +87,7 @@
   border-radius: 9px;
   transition: background-color 0.3s linear;
   cursor: pointer;
+  text-decoration: none;
   &__title {
     @include subtitle;
     color: $black;
