@@ -5,13 +5,14 @@ import { useAppSelector } from '@/redux/hooks';
 import { AppCategory } from '@/types/types';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { IPost } from '@/types/types';
 
 export default function Category() {
   const router = useRouter();
   const category = router.query.id as AppCategory;
   const title = APP_CATEGORIES[category];
   const posts = useAppSelector((state) =>
-    state.posts.posts.filter((item) => item.category === category)
+    state.posts.posts.filter((item: IPost) => item.category === category)
   );
   if (category === 'nashrlar') {
     return (

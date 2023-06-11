@@ -82,7 +82,6 @@
 
 // Actual news
 .actual-article {
-  height: 94px;
   padding: 14px 20px;
   background-color: $light;
   border-radius: 9px;
@@ -94,8 +93,5 @@
   }
   &:hover {
     background-color: $green-lighter;
-  }
-  @include desktop {
-    height: 105px;
   }
 }
