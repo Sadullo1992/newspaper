@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { IPost } from '@/types/types';
 import Image from 'next/image';
+import RealatedNews from '@/components/RelatedNews';
 
 export default function Post() {
   const router = useRouter();
@@ -44,6 +45,7 @@ export default function Post() {
             </div>
             <ActualList />
           </div>
+          <RealatedNews />
         </div>
       </section>
     </>

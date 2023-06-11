@@ -20,3 +20,33 @@
     }
   }
 }
+
+.related-news {
+  padding-top: 80px;
+  @include tablet {
+    padding-top: 40px;
+  }
+  @include mobile {
+    padding-top: 60px;
+  }
+  &__title {
+    @include h3;
+    color: $black;
+    margin-bottom: 24px;
+    @include mobile {
+      margin-bottom: 20px;
+    }
+  }
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    @include desktop {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include mobile {
+      grid-template-columns: none;
+      gap: 20px;
+    }
+  }
+}
