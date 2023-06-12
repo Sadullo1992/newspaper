@@ -32,6 +32,9 @@
     color: $black;
     margin-bottom: 4px;
     transition: color 0.2s linear;
+    @include mobile {
+      font-weight: 600;
+    }
     @include mobilesmall {
       font-size: 14px;
     }

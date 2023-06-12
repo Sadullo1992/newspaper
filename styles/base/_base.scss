@@ -35,8 +35,9 @@ main {
   animation-iteration-count: infinite;
   animation-timing-function: linear;
   animation-delay: 0.5s;
-  transform: translate(-100%);
+  transform: translateX(-100%);
   display: inline-block;
+  white-space: nowrap;
   @include tablet {
     animation-duration: 15s;
     padding-top: 0;
