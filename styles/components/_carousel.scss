@@ -1,6 +1,7 @@
 .carousel {
   overflow-x: hidden;
   position: relative;
+  border-radius: 10px;
   @include mobile {
     padding-bottom: 13px;
   }

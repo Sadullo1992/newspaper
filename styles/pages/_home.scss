@@ -2,7 +2,6 @@
   padding: 40px 0 80px;
   @include tablet {
     padding-top: 0;
-    padding-bottom: 130px;
   }
 }
 
@@ -27,6 +26,9 @@
   padding-top: 80px;
   @include desktop {
     padding-top: 60px;
+  }
+  @include mobile {
+    padding-top: 47px;
   }
   &__title {
     @include h2;
@@ -78,6 +80,24 @@
       flex-direction: row;
       gap: 12px;
       overflow-x: auto;
+      margin-left: -40px;
+      margin-right: -40px;
+      padding-left: 40px;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      @include mobile {
+        margin-left: -20px;
+        margin-right: -20px;
+        padding-left: 20px;
+      }
+      @include mobilesmall {
+        margin-left: -16px;
+        margin-right: -16px;
+        padding-left: 16px;
+      }
       .actual-article {
         flex-basis: 348px;
         flex-shrink: 0;

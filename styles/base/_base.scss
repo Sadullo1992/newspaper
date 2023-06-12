@@ -28,8 +28,8 @@ main {
   overflow-x: hidden;
 }
 .test {
-  padding: 16px 0;
-  color: red;
+  padding-top: 16px;
+  color: $dark;
   animation-name: textround;
   animation-duration: 30s;
   animation-iteration-count: infinite;
@@ -39,6 +39,8 @@ main {
   display: inline-block;
   @include tablet {
     animation-duration: 15s;
+    padding-top: 0;
+    padding-bottom: 16px;
   }
 }
 

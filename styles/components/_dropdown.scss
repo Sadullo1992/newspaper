@@ -31,6 +31,9 @@
       cursor: pointer;
       color: $black;
       @include bodytext;
+      @include tablet {
+        font-size: 14px;
+      }
       &:hover {
         background-color: $green-lighter;
       }

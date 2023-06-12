@@ -1,15 +1,18 @@
 .category-page {
-    padding-bottom: 80px;
+  padding-bottom: 80px;
   .latest-news {
     padding-top: 60px;
     @include desktop {
-        padding-top: 0;
+      padding-top: 0;
     }
   }
   .actual-news {
     padding-top: 70px;
     @include desktop {
-        padding-top: 0;
+      padding-top: 0;
+    }
+    @include mobile {
+      padding-top: 20px;
     }
   }
 }
