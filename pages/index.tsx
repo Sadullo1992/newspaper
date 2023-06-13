@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>«Bobotogʻ tongi» gazetasi</title>
+        <title>«Bobotog&#39; tongi» gazetasi</title>
       </Head>
       <section className="home">
         <div className="container">
