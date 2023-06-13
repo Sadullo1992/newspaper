@@ -18,7 +18,7 @@ export default function Nav() {
       <NavLink href="/" className="btn--link">
         Asosiy
       </NavLink>
-      <MediaQuery minWidth={1280}>
+      <MediaQuery minWidth={1281}>
         {appCategories.slice(0, 3).map(([category, desc]) => (
           <NavLink href={`/categories/${category}`} key={category} className="btn--link">
             {desc}
