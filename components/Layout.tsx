@@ -10,6 +10,9 @@ export default function Layout({ children }: PropsWithChildren) {
       <div className="test__wrapper">
         <p className="test">«Bobotogʻ tongi» gazetasi veb sayti test rejimida ishlayapti!</p>
       </div>
+      <div className="not-working">
+        <h3>404 | The website is not working...!</h3>
+      </div>
       <main>{children}</main>
       <Footer />
     </>

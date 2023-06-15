@@ -9,6 +9,7 @@
 body {
   font-family: 'Inter', sans-serif;
   background-color: $white;
+  overflow: hidden;
 }
 
 main {
@@ -51,5 +52,19 @@ main {
   }
   100% {
     transform: translateX(-100%);
+  }
+}
+
+.not-working {
+  @include flexcenter;
+  background-color: $light;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1000;
+  h3 {
+    color: $dark;
   }
 }
