@@ -63,11 +63,11 @@ export default function Carousel({ posts, images }: CarouselProps) {
 
   const handleTouchEnd = () => {
     if (diff > 0) {
-      if (diff > 80 && activeSlide !== slideLength - 1) {
+      if (diff > 30 && activeSlide !== slideLength - 1) {
         setActiveSlide(activeSlide + 1);
       }
     } else {
-      if (Math.abs(diff) > 80 && activeSlide !== 0) {
+      if (Math.abs(diff) > 30 && activeSlide !== 0) {
         setActiveSlide(activeSlide - 1);
       }
     }

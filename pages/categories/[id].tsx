@@ -6,8 +6,10 @@ import { AppCategory } from '@/types/types';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { IPost } from '@/types/types';
+import useTranslation from '@/hooks/useTranslation';
 
 export default function Category() {
+  const t = useTranslation();
   const router = useRouter();
   const category = router.query.id as AppCategory;
   const title = APP_CATEGORIES[category];
@@ -18,11 +20,11 @@ export default function Category() {
     return (
       <>
         <Head>
-          <title>Gazeta nashrlari</title>
+          <title>{t('Gazeta nashrlari')}</title>
         </Head>
         <section className="category-page">
           <div className="container">
-            <p>Gazeta nashrlari</p>
+            <p>{t('Gazeta nashrlari')}</p>
           </div>
         </section>
       </>
@@ -32,13 +34,13 @@ export default function Category() {
   return (
     <>
       <Head>
-        <title>{title}ga oid maqolalar</title>
+        <title>{t(`${title}ga oid maqolalar`)}</title>
       </Head>
       <section className="category-page">
         <div className="container">
           <div className="main-grid">
             <div className="latest-news main-grid__item1">
-              <h2 className="latest-news__title">{title}ga oid maqolalar</h2>
+              <h2 className="latest-news__title">{t(`${title}ga oid maqolalar`)}</h2>
               <MainList posts={posts} />
             </div>
             <ActualList />
@@ -48,3 +50,5 @@ export default function Category() {
     </>
   );
 }
+
+export { default as getServerSideProps } from '../../lib/deafultServerProps';

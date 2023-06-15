@@ -6,8 +6,10 @@ import Button from './Button';
 import { APP_CATEGORIES } from '@/constants/categories';
 import GetMenuIcon from '@/utils/GetMenuIcon';
 import Link from 'next/link';
+import useTranslation from '@/hooks/useTranslation';
 
 export default function Modal() {
+  const t = useTranslation();
   const { isModal } = useAppSelector(selectModalState);
   const dispatch = useAppDispatch();
   const closeModal = () => {
@@ -30,7 +32,7 @@ export default function Modal() {
               <div className="modal__menu-item__img-wrap">
                 <GetMenuIcon type={category} />
               </div>
-              <h3 className="modal__menu-item__title">{desc}</h3>
+              <h3 className="modal__menu-item__title">{t(desc)}</h3>
             </Link>
           ))}
         </div>

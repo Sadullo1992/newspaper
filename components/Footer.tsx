@@ -1,3 +1,4 @@
+import useTranslation from '@/hooks/useTranslation';
 import { useAppDispatch } from '@/redux/hooks';
 import { showModal } from '@/redux/modalSlice';
 import { useEffect, useRef, useState } from 'react';
@@ -6,6 +7,7 @@ import Logo from './Logo';
 import MenuIcon from './MenuIcon';
 
 export default function Footer() {
+  const t = useTranslation();
   const footerRef = useRef<HTMLElement>(null);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const dispatch = useAppDispatch();
@@ -32,13 +34,15 @@ export default function Footer() {
           {isMenuVisible && (
             <Button className="mobile-menu" onClick={() => dispatch(showModal({ isModal: true }))}>
               <MenuIcon />
-              <span>Bo&#39;limlar</span>
+              <span>{t('Bo‘limlar')}</span>
             </Button>
           )}
           <div className="footer__logo__wrapper">
             <Logo className="footer__logo" />
           </div>
-          <p className="footer__text">“Bobotog‘ tongi” gazetasi barcha huquqlar himoyalangan.</p>
+          <p className="footer__text">
+            {t('"Bobotog‘ tongi" gazetasi barcha huquqlar himoyalangan.')}
+          </p>
           <div className="footer__social">
             <a href="" className="footer__social__link">
               {socialIcon('instagram')}
@@ -54,7 +58,7 @@ export default function Footer() {
             </a>
           </div>
           <div className="footer__author">
-            <p className="footer__text">Ishlab chiqaruvchi:</p>
+            <p className="footer__text">{t('Ishlab chiqaruvchi:')}</p>
             {authorLogo()}
           </div>
         </div>

@@ -6,3 +6,7 @@ export const LANGUAGE_NAMES: { [key in AppLanguage]: string } = {
 };
 
 export const DEFAULT_LANGUAGE: AppLanguage = 'lotin';
+
+export const LANGUAGE_COOKIE = 'APP_LANGUAGE';
+
+export const COOKIE_MAX_AGE = 7 * 24 * 3600;

@@ -5,13 +5,15 @@ import { selectPosts } from '@/redux/posts';
 import ActualList from '@/components/ActualList';
 import MainList from '@/components/MainList';
 import Carousel from '@/components/Carousel';
+import useTranslation from '@/hooks/useTranslation';
 
 export default function Home() {
+  const t = useTranslation();
   const { posts } = useAppSelector(selectPosts);
   return (
     <>
       <Head>
-        <title>«Bobotog&#39; tongi» gazetasi</title>
+        <title>{t('«Bobotog‘ tongi» gazetasi')}</title>
       </Head>
       <section className="home">
         <div className="container">
@@ -27,7 +29,7 @@ export default function Home() {
           </div>
           <div className="main-grid">
             <div className="latest-news main-grid__item1">
-              <h2 className="latest-news__title">Eng so&#39;ngi yangiliklar</h2>
+              <h2 className="latest-news__title">{t('Eng so‘ngi yangiliklar')}</h2>
               <MainList posts={posts.slice(3)} />
             </div>
             <ActualList />
@@ -37,3 +39,5 @@ export default function Home() {
     </>
   );
 }
+
+export { default as getServerSideProps } from '../lib/deafultServerProps';

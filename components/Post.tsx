@@ -1,3 +1,4 @@
+import useTranslation from '@/hooks/useTranslation';
 import { IPost } from '@/types/types';
 import Carousel from './Carousel';
 
@@ -6,18 +7,19 @@ type PostProps = {
 };
 
 export default function Post({ post }: PostProps) {
+  const t = useTranslation();
   return (
     <div className="post">
       <div className="post__slider">
         <Carousel images={post?.imgUrls} />
       </div>
-      <h2 className="post__title">{post?.title}</h2>
+      <h2 className="post__title">{t(post?.title)}</h2>
       <div className="post__content">
         {post?.description.map((paragraph, index) => (
-          <p key={index}>{paragraph}</p>
+          <p key={index}>{t(paragraph)}</p>
         ))}
       </div>
-      <h4 className="post__author">{post?.author}</h4>
+      <h4 className="post__author">{t(post?.author)}</h4>
     </div>
   );
 }

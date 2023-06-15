@@ -11,6 +11,9 @@ export default function Dropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const { language } = useAppSelector(selectSettings);
   const dispatch = useAppDispatch();
+  const setLanguage = (lang: string) => {
+    dispatch(setAppLanguage(lang as AppLanguage));
+  };
   return (
     <div className={clsx('dropdown', isOpen && 'dropdown--active')}>
       <Button className="btn--dropdown" onClick={() => setIsOpen(!isOpen)}>
@@ -23,7 +26,7 @@ export default function Dropdown() {
             key={lang}
             className="dropdown__select__item"
             onClick={() => {
-              dispatch(setAppLanguage(lang as AppLanguage));
+              setLanguage(lang);
               setIsOpen(false);
             }}
           >

@@ -1,12 +1,14 @@
 import Image from 'next/image';
 import { IPost } from '@/types/types';
 import Link from 'next/link';
+import useTranslation from '@/hooks/useTranslation';
 
 type ArticleProps = {
   item: IPost;
 };
 
 export default function Article({ item }: ArticleProps) {
+  const t = useTranslation();
   const { id, title, imgUrls, views, published } = item;
   return (
     <Link href={`/posts/${id}`} className="article">
@@ -19,11 +21,13 @@ export default function Article({ item }: ArticleProps) {
         priority
       />
       <div className="article__body">
-        <h3 className="article__title">{title}</h3>
+        <h3 className="article__title">{t(title)}</h3>
         <div className="article__caption">
-          <span>{views} kishi o‘qidi</span>
+          <span>
+            {views} {t('kishi o‘qidi')}
+          </span>
           <span>/</span>
-          <span>{published}</span>
+          <span>{t(published)}</span>
         </div>
       </div>
     </Link>

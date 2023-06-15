@@ -5,12 +5,14 @@ import { APP_CATEGORIES } from '@/constants/categories';
 import { useAppDispatch } from '@/redux/hooks';
 import { showModal } from '@/redux/modalSlice';
 import NavLink from './NavLink';
+import useTranslation from '@/hooks/useTranslation';
 
 const MediaQuery = dynamic(() => import('react-responsive'), {
   ssr: false,
 });
 
 export default function Nav() {
+  const t = useTranslation();
   const dispatch = useAppDispatch();
   const appCategories = Object.entries(APP_CATEGORIES);
   return (
@@ -21,21 +23,21 @@ export default function Nav() {
       <MediaQuery minWidth={1281}>
         {appCategories.slice(0, 3).map(([category, desc]) => (
           <NavLink href={`/categories/${category}`} key={category} className="btn--link">
-            {desc}
+            {t(desc)}
           </NavLink>
         ))}
       </MediaQuery>
       <MediaQuery minWidth={991} maxWidth={1280}>
         {appCategories.slice(0, 2).map(([category, desc]) => (
           <NavLink href={`/categories/${category}`} key={category} className="btn--link">
-            {desc}
+            {t(desc)}
           </NavLink>
         ))}
       </MediaQuery>
       <MediaQuery maxWidth={991}>
         {appCategories.map(([category, desc]) => (
           <NavLink href={`/categories/${category}`} key={category} className="btn--link">
-            {desc}
+            {t(desc)}
           </NavLink>
         ))}
       </MediaQuery>
@@ -43,7 +45,7 @@ export default function Nav() {
         className="btn--link btn--arrow"
         onClick={() => dispatch(showModal({ isModal: true }))}
       >
-        <span>Barchasi</span>
+        <span>{t('Barchasi')}</span>
         <ArrowIcon />
       </Button>
     </nav>
