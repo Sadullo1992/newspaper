@@ -1,43 +1,48 @@
 import dynamic from 'next/dynamic';
 import ArrowIcon from './ArrowIcon';
 import Button from './Button';
-import { APP_CATEGORIES } from '@/constants/categories';
 import { useAppDispatch } from '@/redux/hooks';
 import { showModal } from '@/redux/modalSlice';
 import NavLink from './NavLink';
 import useTranslation from '@/hooks/useTranslation';
+import { ICategory } from '@/types/types';
+import sortCategories from '@/utils/sortCategory';
 
 const MediaQuery = dynamic(() => import('react-responsive'), {
   ssr: false,
 });
 
-export default function Nav() {
+type NavProps = {
+  categories: ICategory[];
+};
+
+export default function Nav({ categories }: NavProps) {
   const t = useTranslation();
   const dispatch = useAppDispatch();
-  const appCategories = Object.entries(APP_CATEGORIES);
+  const appCategories = sortCategories(categories);
   return (
     <nav className="nav">
       <NavLink href="/" className="btn--link">
         Asosiy
       </NavLink>
       <MediaQuery minWidth={1281}>
-        {appCategories.slice(0, 3).map(([category, desc]) => (
-          <NavLink href={`/categories/${category}`} key={category} className="btn--link">
-            {t(desc)}
+        {appCategories.slice(0, 3).map((item: ICategory) => (
+          <NavLink href={`/categories/${item.slug}`} key={item.id} className="btn--link">
+            {t(item.name)}
           </NavLink>
         ))}
       </MediaQuery>
       <MediaQuery minWidth={991} maxWidth={1280}>
-        {appCategories.slice(0, 2).map(([category, desc]) => (
-          <NavLink href={`/categories/${category}`} key={category} className="btn--link">
-            {t(desc)}
+        {appCategories.slice(0, 2).map((item: ICategory) => (
+          <NavLink href={`/categories/${item.slug}`} key={item.id} className="btn--link">
+            {t(item.name)}
           </NavLink>
         ))}
       </MediaQuery>
       <MediaQuery maxWidth={991}>
-        {appCategories.map(([category, desc]) => (
-          <NavLink href={`/categories/${category}`} key={category} className="btn--link">
-            {t(desc)}
+        {appCategories.map((item: ICategory) => (
+          <NavLink href={`/categories/${item.slug}`} key={item.id} className="btn--link">
+            {t(item.name)}
           </NavLink>
         ))}
       </MediaQuery>

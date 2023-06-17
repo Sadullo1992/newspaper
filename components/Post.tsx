@@ -1,9 +1,9 @@
 import useTranslation from '@/hooks/useTranslation';
-import { IPost } from '@/types/types';
+import { InterfacePost } from '@/types/types';
 import Carousel from './Carousel';
 
 type PostProps = {
-  post?: IPost;
+  post?: InterfacePost;
 };
 
 export default function Post({ post }: PostProps) {

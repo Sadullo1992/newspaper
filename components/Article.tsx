@@ -1,10 +1,10 @@
 import Image from 'next/image';
-import { IPost } from '@/types/types';
+import { InterfacePost } from '@/types/types';
 import Link from 'next/link';
 import useTranslation from '@/hooks/useTranslation';
 
 type ArticleProps = {
-  item: IPost;
+  item: InterfacePost;
 };
 
 export default function Article({ item }: ArticleProps) {

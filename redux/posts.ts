@@ -1,4 +1,4 @@
-import { IPost, TPosts } from '@/types/types';
+import { InterfacePost, TPosts } from '@/types/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
 import postsData from '@/assets/data/posts.json';
@@ -11,7 +11,7 @@ export const postsSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
-    getPosts: (state, action: PayloadAction<IPost[]>) => {
+    getPosts: (state, action: PayloadAction<InterfacePost[]>) => {
       return {
         ...state,
         posts: [...action.payload],

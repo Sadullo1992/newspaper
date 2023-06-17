@@ -5,6 +5,7 @@ import postsReducer from './posts';
 import { nextReduxCookieMiddleware, wrapMakeStore } from 'next-redux-cookie-wrapper';
 import { COOKIE_MAX_AGE, LANGUAGE_COOKIE } from '@/constants/constants';
 import { createWrapper } from 'next-redux-wrapper';
+import { apiSlice } from './apiSlice';
 
 const makeStore = wrapMakeStore(() =>
   configureStore({
@@ -12,23 +13,26 @@ const makeStore = wrapMakeStore(() =>
       modal: modalReducer,
       settings: settingsReducer,
       posts: postsReducer,
+      [apiSlice.reducerPath]: apiSlice.reducer,
     },
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().prepend(
-        nextReduxCookieMiddleware({
-          subtrees: [
-            {
-              subtree: `${settingsSlice.name}.language`,
-              cookieName: LANGUAGE_COOKIE,
-              maxAge: COOKIE_MAX_AGE,
-              sameSite: true,
-              serializationFunction: String,
-              deserializationFunction: String,
-              defaultState: settingsSlice.getInitialState().language,
-            },
-          ],
-        })
-      ),
+      getDefaultMiddleware()
+        .prepend(
+          nextReduxCookieMiddleware({
+            subtrees: [
+              {
+                subtree: `${settingsSlice.name}.language`,
+                cookieName: LANGUAGE_COOKIE,
+                maxAge: COOKIE_MAX_AGE,
+                sameSite: true,
+                serializationFunction: String,
+                deserializationFunction: String,
+                defaultState: settingsSlice.getInitialState().language,
+              },
+            ],
+          })
+        )
+        .concat(apiSlice.middleware),
   })
 );
 

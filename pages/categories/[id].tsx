@@ -5,7 +5,7 @@ import { useAppSelector } from '@/redux/hooks';
 import { AppCategory } from '@/types/types';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { IPost } from '@/types/types';
+import { InterfacePost } from '@/types/types';
 import useTranslation from '@/hooks/useTranslation';
 
 export default function Category() {
@@ -14,7 +14,7 @@ export default function Category() {
   const category = router.query.id as AppCategory;
   const title = APP_CATEGORIES[category];
   const posts = useAppSelector((state) =>
-    state.posts.posts.filter((item: IPost) => item.category === category)
+    state.posts.posts.filter((item: InterfacePost) => item.category === category)
   );
   if (category === 'nashrlar') {
     return (

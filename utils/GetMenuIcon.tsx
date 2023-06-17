@@ -4,7 +4,7 @@ type MenuIconProps = {
 export default function GetMenuIcon({ type }: MenuIconProps) {
   let content = null;
   switch (type) {
-    case 'agro':
+    case 'qishloq-xojaligi':
       {
         content = (
           <svg
@@ -145,7 +145,7 @@ export default function GetMenuIcon({ type }: MenuIconProps) {
         );
       }
       break;
-    case 'tanqid':
+    case 'tanqid-va-tahlil':
       {
         content = (
           <svg
@@ -297,7 +297,7 @@ export default function GetMenuIcon({ type }: MenuIconProps) {
         );
       }
       break;
-    case 'iqtisod':
+    case 'iqtisodiyot':
       {
         content = (
           <svg
@@ -536,7 +536,7 @@ export default function GetMenuIcon({ type }: MenuIconProps) {
         );
       }
       break;
-    case 'huquq':
+    case 'huquq-va-majburiyatlar':
       {
         content = (
           <svg
@@ -616,7 +616,7 @@ export default function GetMenuIcon({ type }: MenuIconProps) {
         );
       }
       break;
-    case 'turizm':
+    case 'turizm-va-sport':
       {
         content = (
           <svg
@@ -678,7 +678,7 @@ export default function GetMenuIcon({ type }: MenuIconProps) {
         );
       }
       break;
-    case 'nashrlar':
+    case 'gazetamiz-nashrlari':
       {
         content = (
           <svg

@@ -6,10 +6,13 @@ import ActualList from '@/components/ActualList';
 import MainList from '@/components/MainList';
 import Carousel from '@/components/Carousel';
 import useTranslation from '@/hooks/useTranslation';
+import { useGetAllPostsQuery } from '@/redux/apiSlice';
 
 export default function Home() {
   const t = useTranslation();
   const { posts } = useAppSelector(selectPosts);
+  const { data } = useGetAllPostsQuery();
+  console.log(data);
   return (
     <>
       <Head>

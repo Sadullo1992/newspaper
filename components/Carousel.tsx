@@ -1,4 +1,4 @@
-import { IPost } from '@/types/types';
+import { InterfacePost } from '@/types/types';
 import clsx from 'clsx';
 import { TouchEvent, useEffect, useState } from 'react';
 import Button from './Button';
@@ -7,7 +7,7 @@ import CarouselPostItem from './CarouselPostItem';
 import NavIcon from './NavIcon';
 
 type CarouselProps = {
-  posts?: IPost[];
+  posts?: InterfacePost[];
   images?: string[];
 };
 

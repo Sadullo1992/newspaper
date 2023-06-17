@@ -1,9 +1,9 @@
 import useTranslation from '@/hooks/useTranslation';
-import { IPost } from '@/types/types';
+import { InterfacePost } from '@/types/types';
 import Link from 'next/link';
 
 type ActualArticleProps = {
-  item: IPost;
+  item: InterfacePost;
 };
 
 export default function ActualArticle({ item }: ActualArticleProps) {

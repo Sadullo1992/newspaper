@@ -1,10 +1,10 @@
 import useTranslation from '@/hooks/useTranslation';
-import { IPost } from '@/types/types';
+import { InterfacePost } from '@/types/types';
 import Image from 'next/image';
 import Link from 'next/link';
 
 type CarouselPostItemProps = {
-  post: IPost;
+  post: InterfacePost;
 };
 
 export default function CarouselPostItem({ post }: CarouselPostItemProps) {

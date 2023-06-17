@@ -3,13 +3,19 @@ import { selectModalState } from '@/redux/modalSlice';
 import { showModal } from '@/redux/modalSlice';
 import clsx from 'clsx';
 import Button from './Button';
-import { APP_CATEGORIES } from '@/constants/categories';
 import GetMenuIcon from '@/utils/GetMenuIcon';
 import Link from 'next/link';
 import useTranslation from '@/hooks/useTranslation';
+import { ICategory } from '@/types/types';
+import sortCategories from '@/utils/sortCategory';
 
-export default function Modal() {
+type ModalProps = {
+  categories: ICategory[];
+};
+
+export default function Modal({ categories }: ModalProps) {
   const t = useTranslation();
+  const appCategories = sortCategories(categories);
   const { isModal } = useAppSelector(selectModalState);
   const dispatch = useAppDispatch();
   const closeModal = () => {
@@ -22,17 +28,17 @@ export default function Modal() {
           <Button className="btn--modal-close" onClick={closeModal}>
             {closeIcon()}
           </Button>
-          {Object.entries(APP_CATEGORIES).map(([category, desc]) => (
+          {appCategories.map((item: ICategory) => (
             <Link
-              href={`/categories/${category}`}
-              key={category}
+              href={`/categories/${item.slug}`}
+              key={item.id}
               className="modal__menu-item"
               onClick={closeModal}
             >
               <div className="modal__menu-item__img-wrap">
-                <GetMenuIcon type={category} />
+                <GetMenuIcon type={item.slug} />
               </div>
-              <h3 className="modal__menu-item__title">{t(desc)}</h3>
+              <h3 className="modal__menu-item__title">{t(item.name)}</h3>
             </Link>
           ))}
         </div>
