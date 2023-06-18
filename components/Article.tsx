@@ -1,19 +1,19 @@
 import Image from 'next/image';
-import { InterfacePost } from '@/types/types';
+import { IArticle } from '@/types/types';
 import Link from 'next/link';
 import useTranslation from '@/hooks/useTranslation';
 
 type ArticleProps = {
-  item: InterfacePost;
+  item: IArticle;
 };
 
 export default function Article({ item }: ArticleProps) {
   const t = useTranslation();
-  const { id, title, imgUrls, views, published } = item;
+  const { id, title, postimage_set: images, views, created_at } = item;
   return (
     <Link href={`/posts/${id}`} className="article">
       <Image
-        src={imgUrls[0]}
+        src={images[0].image}
         height={504}
         width={894}
         alt="article photo"
@@ -27,7 +27,7 @@ export default function Article({ item }: ArticleProps) {
             {views} {t('kishi o‘qidi')}
           </span>
           <span>/</span>
-          <span>{t(published)}</span>
+          <span>{t(created_at)}</span>
         </div>
       </div>
     </Link>

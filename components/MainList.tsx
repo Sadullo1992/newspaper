@@ -1,8 +1,8 @@
-import { InterfacePost } from '@/types/types';
+import { IArticle } from '@/types/types';
 import Article from './Article';
 
 type MainListProps = {
-  posts: InterfacePost[];
+  posts: IArticle[];
 };
 
 export default function MainList({ posts }: MainListProps) {

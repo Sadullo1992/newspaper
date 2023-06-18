@@ -1,15 +1,15 @@
 import useTranslation from '@/hooks/useTranslation';
-import { useAppSelector } from '@/redux/hooks';
+import { useGetActualPostsQuery } from '@/redux/apiSlice';
 import ActualArticle from './ActualArticle';
 
 export default function ActualList() {
   const t = useTranslation();
-  const actualPosts = useAppSelector((state) => state.posts.posts.filter((item) => item.actual));
+  const { data: actualPosts } = useGetActualPostsQuery();
   return (
     <div className="actual-news main-grid__item2">
       <h3 className="actual-news__title">{t('Dolzarb')}</h3>
       <div className="actual-news__grid">
-        {actualPosts.map((item) => (
+        {actualPosts?.results.map((item) => (
           <ActualArticle key={item.id} item={item} />
         ))}
       </div>
