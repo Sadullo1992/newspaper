@@ -30,10 +30,7 @@ export default function Modal({ categories }: ModalProps) {
           </Button>
           {appCategories.map((item: ICategory) => (
             <Link
-              href={{
-                pathname: `/categories/${item.slug}`,
-                query: item.id,
-              }}
+              href={`/categories/${item.slug}`}
               key={item.id}
               className="modal__menu-item"
               onClick={closeModal}

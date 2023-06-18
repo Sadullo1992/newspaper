@@ -27,42 +27,21 @@ export default function Nav({ categories }: NavProps) {
       </NavLink>
       <MediaQuery minWidth={1281}>
         {appCategories.slice(0, 3).map((item: ICategory) => (
-          <NavLink
-            href={{
-              pathname: `/categories/${item.slug}`,
-              query: item.id,
-            }}
-            key={item.id}
-            className="btn--link"
-          >
+          <NavLink href={`/categories/${item.slug}`} key={item.id} className="btn--link">
             {t(item.name)}
           </NavLink>
         ))}
       </MediaQuery>
       <MediaQuery minWidth={991} maxWidth={1280}>
         {appCategories.slice(0, 2).map((item: ICategory) => (
-          <NavLink
-            href={{
-              pathname: `/categories/${item.slug}`,
-              query: item.id,
-            }}
-            key={item.id}
-            className="btn--link"
-          >
+          <NavLink href={`/categories/${item.slug}`} key={item.id} className="btn--link">
             {t(item.name)}
           </NavLink>
         ))}
       </MediaQuery>
       <MediaQuery maxWidth={991}>
         {appCategories.map((item: ICategory) => (
-          <NavLink
-            href={{
-              pathname: `/categories/${item.slug}`,
-              query: item.id,
-            }}
-            key={item.id}
-            className="btn--link"
-          >
+          <NavLink href={`/categories/${item.slug}`} key={item.id} className="btn--link">
             {t(item.name)}
           </NavLink>
         ))}

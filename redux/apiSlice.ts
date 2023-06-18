@@ -19,6 +19,9 @@ export const apiSlice = createApi({
     getAllCategories: builder.query<IResponse<ICategory[]>, void>({
       query: () => `/categories`,
     }),
+    getCategoryPosts: builder.query<IResponse<IArticle[]>, string>({
+      query: (id) => `/categories/${id}/posts`,
+    }),
   }),
 });
 
@@ -27,6 +30,7 @@ export const {
   useGetAllCategoriesQuery,
   useGetFeaturedPostsQuery,
   useGetActualPostsQuery,
+  useGetCategoryPostsQuery,
 } = apiSlice;
 
 export const selectCategories = apiSlice.endpoints.getAllCategories.select();

@@ -10,7 +10,6 @@ export default function Home() {
   const t = useTranslation();
   const { data: allPosts } = useGetAllPostsQuery();
   const { data: allFeaturedPosts } = useGetFeaturedPostsQuery();
-  console.log(allPosts);
   return (
     <>
       <Head>

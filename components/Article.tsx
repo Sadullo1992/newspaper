@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { IArticle } from '@/types/types';
 import Link from 'next/link';
 import useTranslation from '@/hooks/useTranslation';
+import dateFormetter from '@/utils/dateFormatter';
 
 type ArticleProps = {
   item: IArticle;
@@ -13,7 +14,11 @@ export default function Article({ item }: ArticleProps) {
   return (
     <Link href={`/posts/${id}`} className="article">
       <Image
-        src={images[0].image}
+        src={
+          images[0].image.includes('https://uzunpro.uz')
+            ? images[0].image
+            : `https://uzunpro.uz${images[0].image}`
+        }
         height={504}
         width={894}
         alt="article photo"
@@ -27,7 +32,7 @@ export default function Article({ item }: ArticleProps) {
             {views} {t('kishi o‘qidi')}
           </span>
           <span>/</span>
-          <span>{t(created_at)}</span>
+          <span>{dateFormetter(created_at)}</span>
         </div>
       </div>
     </Link>
