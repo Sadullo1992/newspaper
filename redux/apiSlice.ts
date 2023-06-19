@@ -1,7 +1,6 @@
 import { BASE_URL } from '@/constants/constants';
-import { createSelector } from '@reduxjs/toolkit';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { IResponse, IArticle, ICategory } from '../types/types';
+import type { IResponse, IArticle, ICategory, IPost } from '../types/types';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
@@ -22,6 +21,12 @@ export const apiSlice = createApi({
     getCategoryPosts: builder.query<IResponse<IArticle[]>, string>({
       query: (id) => `/categories/${id}/posts`,
     }),
+    getPostById: builder.query<IPost, string>({
+      query: (id) => `/posts/${id}`,
+    }),
+    getRelatedPosts: builder.query<IResponse<IArticle[]>, string>({
+      query: (id) => `/posts/${id}/related_posts`,
+    }),
   }),
 });
 
@@ -31,11 +36,6 @@ export const {
   useGetFeaturedPostsQuery,
   useGetActualPostsQuery,
   useGetCategoryPostsQuery,
+  useGetPostByIdQuery,
+  useGetRelatedPostsQuery,
 } = apiSlice;
-
-export const selectCategories = apiSlice.endpoints.getAllCategories.select();
-
-export const selectAllCategories = createSelector(
-  selectCategories,
-  (categoriesResult) => categoriesResult?.data ?? []
-);

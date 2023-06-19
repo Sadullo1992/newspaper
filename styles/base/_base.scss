@@ -53,3 +53,12 @@ main {
     transform: translateX(-100%);
   }
 }
+
+.loader {
+  width: 100%;
+  object-fit: contain;
+}
+
+img {
+  background-color: #f3f3f3;
+}

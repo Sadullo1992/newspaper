@@ -8,9 +8,9 @@ type ActualArticleProps = {
 
 export default function ActualArticle({ item }: ActualArticleProps) {
   const t = useTranslation();
-  const { id, title } = item;
+  const { slug, title } = item;
   return (
-    <Link href={`/posts/${id}`} className="actual-article">
+    <Link href={`/posts/${slug}`} className="actual-article">
       <h3 className="actual-article__title">{t(title)}</h3>
     </Link>
   );

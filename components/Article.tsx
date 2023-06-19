@@ -10,9 +10,9 @@ type ArticleProps = {
 
 export default function Article({ item }: ArticleProps) {
   const t = useTranslation();
-  const { id, title, postimage_set: images, views, created_at } = item;
+  const { slug, title, postimage_set: images, views, created_at } = item;
   return (
-    <Link href={`/posts/${id}`} className="article">
+    <Link href={`/posts/${slug}`} className="article">
       <Image
         src={
           images[0].image.includes('https://uzunpro.uz')

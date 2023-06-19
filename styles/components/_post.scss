@@ -18,9 +18,12 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
-    p {
+    p, li {
       @include bodytext;
       color: $dark;
+    }
+    ul {
+      padding-left: 20px;
     }
   }
   &__author {

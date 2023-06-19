@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import useTranslation from '@/hooks/useTranslation';
 import { useGetAllCategoriesQuery, useGetCategoryPostsQuery } from '@/redux/apiSlice';
+import { MainListLoader } from '@/components/Loader';
 
 export default function Category() {
   const t = useTranslation();
@@ -16,8 +17,7 @@ export default function Category() {
     id: '',
     name: 'Gazeta bo`limlari',
   };
-  const { data } = useGetCategoryPostsQuery(id, { skip: !id });
-  console.log(data);
+  const { data, isFetching } = useGetCategoryPostsQuery(id, { skip: !id });
   if (slug === 'gazetamiz-nashrlari') {
     return (
       <>
@@ -44,6 +44,7 @@ export default function Category() {
             <div className="latest-news main-grid__item1">
               <h2 className="latest-news__title">{t(`${name}ga oid maqolalar`)}</h2>
               {data && <MainList posts={data?.results} />}
+              {isFetching && <MainListLoader />}
             </div>
             <ActualList />
           </div>

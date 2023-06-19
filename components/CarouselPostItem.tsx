@@ -9,9 +9,9 @@ type CarouselPostItemProps = {
 
 export default function CarouselPostItem({ post }: CarouselPostItemProps) {
   const t = useTranslation();
-  const { id, title, postimage_set } = post;
+  const { slug, title, postimage_set } = post;
   return (
-    <Link href={`/posts/${id}`} className="carousel__item">
+    <Link href={`/posts/${slug}`} className="carousel__item">
       <Image
         src={`https://uzunpro.uz${postimage_set[0].image}`}
         height={502}
