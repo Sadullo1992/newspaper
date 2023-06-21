@@ -59,13 +59,8 @@
         color: $gray;
         transition: color 0.2s linear;
         white-space: nowrap;
-      }
-      &__desc {
         @include mobilesmall {
-          display: flex;
-          justify-content: space-between;
-          flex-wrap: wrap;
-          row-gap: 4px;
+          font-size: 12px;
         }
       }
     }
