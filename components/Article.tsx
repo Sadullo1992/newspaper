@@ -14,11 +14,7 @@ export default function Article({ item }: ArticleProps) {
   return (
     <Link href={`/posts/${slug}`} className="article">
       <Image
-        src={
-          images[0].image.includes('https://uzunpro.uz')
-            ? images[0].image
-            : `https://uzunpro.uz${images[0].image}`
-        }
+        src={images[0].image}
         height={504}
         width={894}
         alt="article photo"

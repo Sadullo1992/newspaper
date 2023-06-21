@@ -13,7 +13,7 @@ export default function CarouselPostItem({ post }: CarouselPostItemProps) {
   return (
     <Link href={`/posts/${slug}`} className="carousel__item">
       <Image
-        src={`https://uzunpro.uz${postimage_set[0].image}`}
+        src={postimage_set[0].image}
         height={502}
         width={894}
         alt="slider image"
