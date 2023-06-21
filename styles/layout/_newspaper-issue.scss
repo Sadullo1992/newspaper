@@ -1,0 +1,93 @@
+.newspaper-issue {
+  padding-top: 60px;
+  @include tablet {
+    padding-top: 0;
+  }
+  &__title {
+    @include h2;
+    color: $black;
+    margin-bottom: 10px;
+  }
+  &__text {
+    @include bodytext;
+    color: $gray;
+    margin-bottom: 24px;
+  }
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    @include tablet {
+      column-gap: 8px;
+    }
+    @include mobile {
+      grid-template-columns: none;
+    }
+  }
+  &__item {
+    width: 100%;
+    border-radius: 10px;
+    background-color: $light;
+    padding: 17px 22px;
+    display: flex;
+    justify-content: space-between;
+    transition: background-color 0.3s linear;
+    @include tablet {
+      padding: 10px;
+    }
+    @include mobile {
+      padding: 17px 22px;
+    }
+    @include mobilesmall {
+      padding: 10px;
+      flex-direction: column;
+      gap: 10px;
+    }
+    &:hover {
+      background-color: $green-lighter;
+    }
+    &__title {
+      @include subtitle;
+      color: $black;
+      margin-bottom: 6px;
+      @include textoverflow(1);
+    }
+    &__content {
+      p {
+        font-size: 14px;
+        line-height: 1.5;
+        color: $gray;
+        transition: color 0.2s linear;
+        white-space: nowrap;
+      }
+      &__desc {
+        @include mobilesmall {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          row-gap: 4px;
+        }
+      }
+    }
+    &:hover &__title {
+      color: $green-dark;
+    }
+    &:hover &__content {
+      p {
+        color: $green;
+      }
+    }
+    &__btn-wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 8px;
+      @include mobilesmall {
+        flex-direction: row-reverse;
+        .btn {
+          flex: 1;
+        }
+      }
+    }
+  }
+}

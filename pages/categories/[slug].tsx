@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import useTranslation from '@/hooks/useTranslation';
 import { useGetAllCategoriesQuery, useGetCategoryPostsQuery } from '@/redux/apiSlice';
 import { MainListLoader } from '@/components/Loader';
+import NewspaperIssue from '@/components/NewspaperIssue';
 
 export default function Category() {
   const t = useTranslation();
@@ -26,7 +27,7 @@ export default function Category() {
         </Head>
         <section className="category-page">
           <div className="container">
-            <p>{t('Gazeta nashrlari')}</p>
+            <NewspaperIssue />
           </div>
         </section>
       </>
