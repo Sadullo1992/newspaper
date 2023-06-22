@@ -1,6 +1,6 @@
 import { BASE_URL } from '@/constants/constants';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { IResponse, IArticle, ICategory, IPost } from '../types/types';
+import type { IResponse, IArticle, ICategory, IPost, IMagazine } from '../types/types';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
@@ -27,6 +27,9 @@ export const apiSlice = createApi({
     getRelatedPosts: builder.query<IResponse<IArticle[]>, string>({
       query: (id) => `/posts/${id}/related_posts`,
     }),
+    getAllMagazines: builder.query<IResponse<IMagazine[]>, void>({
+      query: () => `/magazines`,
+    }),
   }),
 });
 
@@ -38,4 +41,5 @@ export const {
   useGetCategoryPostsQuery,
   useGetPostByIdQuery,
   useGetRelatedPostsQuery,
+  useGetAllMagazinesQuery,
 } = apiSlice;
