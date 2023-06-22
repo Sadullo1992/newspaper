@@ -19,7 +19,7 @@ export const useDownloadFile = ({ apiDefinition }: DownloadFileProps): Downloade
     try {
       const { data } = await apiDefinition();
       console.log(data);
-      const url = URL.createObjectURL(data);
+      const url = URL.createObjectURL(new Blob([data]));
       setFileUrl(url);
       ref.current?.click();
       URL.revokeObjectURL(url);
