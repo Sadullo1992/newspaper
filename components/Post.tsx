@@ -1,6 +1,6 @@
+import parse, { Text } from 'html-react-parser';
 import useTranslation from '@/hooks/useTranslation';
 import { IPost } from '@/types/types';
-import { useRef } from 'react';
 import Carousel from './Carousel';
 
 type PostProps = {
@@ -8,7 +8,6 @@ type PostProps = {
 };
 
 export default function Post({ post }: PostProps) {
-  const contentRef = useRef<HTMLDivElement | null>(null);
   const t = useTranslation();
   const { title, postimage_set, content, author } = post;
   const imageUrls = postimage_set.map((item) => item.image);
@@ -18,16 +17,17 @@ export default function Post({ post }: PostProps) {
         <Carousel images={imageUrls} />
       </div>
       <h2 className="post__title">{t(title)}</h2>
-      <div
-        className="post__content"
-        ref={contentRef}
-        dangerouslySetInnerHTML={createMarkup(t(content, 'tag'))}
-      ></div>
+      <div className="post__content">
+        {parse(content, {
+          replace: (domNode) => {
+            if (domNode instanceof Text) {
+              const thisNode = { ...domNode };
+              domNode.data = t(thisNode.data);
+            }
+          },
+        })}
+      </div>
       <h4 className="post__author">{t(author)}</h4>
     </div>
   );
-}
-
-function createMarkup(c: string) {
-  return { __html: c };
 }
