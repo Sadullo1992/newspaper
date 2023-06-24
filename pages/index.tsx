@@ -6,11 +6,14 @@ import Carousel from '@/components/Carousel';
 import useTranslation from '@/hooks/useTranslation';
 import { useGetAllPostsQuery, useGetFeaturedPostsQuery } from '@/redux/apiSlice';
 import { CarouselLoader, ArticleLoader, MainListLoader } from '@/components/Loader';
+import ErrorMessage from '@/components/ErrorMessage';
+import { IArticle } from '@/types/types';
 
 export default function Home() {
   const t = useTranslation();
-  const { data: allPosts, isFetching: isAllPostFetching } = useGetAllPostsQuery();
+  const { data: allPosts, isFetching: isAllPostFetching, isError } = useGetAllPostsQuery();
   const { data: allFeaturedPosts, isFetching } = useGetFeaturedPostsQuery();
+  if (isError) return <ErrorMessage />;
   return (
     <>
       <Head>
@@ -30,7 +33,7 @@ export default function Home() {
                 allPosts.results
                   ?.slice()
                   .slice(1, 3)
-                  .map((item) => <Article key={item.id} item={item} />)}
+                  .map((item: IArticle) => <Article key={item.id} item={item} />)}
               {isAllPostFetching && (
                 <>
                   <ArticleLoader uniqueKey={'for-article'} />

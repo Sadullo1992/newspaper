@@ -7,18 +7,22 @@ import useTranslation from '@/hooks/useTranslation';
 import { useGetAllCategoriesQuery, useGetCategoryPostsQuery } from '@/redux/apiSlice';
 import { MainListLoader } from '@/components/Loader';
 import NewspaperIssue from '@/components/NewspaperIssue';
+import ErrorMessage from '@/components/ErrorMessage';
 
 export default function Category() {
   const t = useTranslation();
   const {
     query: { slug },
   } = useRouter();
-  const { data: allCategories } = useGetAllCategoriesQuery();
+  const { data: allCategories, isError } = useGetAllCategoriesQuery();
   const { id, name } = allCategories?.results.find((item: ICategory) => item.slug === slug) ?? {
     id: '',
     name: 'Gazeta bo`limlari',
   };
   const { data, isFetching } = useGetCategoryPostsQuery(id, { skip: !id });
+
+  if (isError) return <ErrorMessage />;
+
   if (slug === 'gazetamiz-nashrlari') {
     return (
       <>

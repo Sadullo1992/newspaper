@@ -7,18 +7,20 @@ import Post from '@/components/Post';
 import useTranslation from '@/hooks/useTranslation';
 import { useGetAllPostsQuery, useGetPostByIdQuery } from '@/redux/apiSlice';
 import { CarouselLoader } from '@/components/Loader';
+import ErrorMessage from '@/components/ErrorMessage';
 
 export default function PostPage() {
   const t = useTranslation();
   const {
     query: { slug },
   } = useRouter();
-  const { data: allPosts } = useGetAllPostsQuery();
+  const { data: allPosts, isError } = useGetAllPostsQuery();
   const { id, title } = allPosts?.results.find((item: IArticle) => item.slug === slug) ?? {
     id: '',
     title: 'Maqola',
   };
   const { data: post, isFetching } = useGetPostByIdQuery(id, { skip: !id });
+  if (isError) return <ErrorMessage />;
   return (
     <>
       <Head>
