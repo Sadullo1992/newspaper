@@ -5,8 +5,6 @@ const CarouselLoader = (props: JSX.IntrinsicAttributes & IContentLoaderProps) =>
   <ContentLoader
     className={'loader'}
     speed={2}
-    width={894}
-    height={502}
     viewBox="0 0 894 502"
     backgroundColor="#f3f3f3"
     foregroundColor="#ecebeb"
@@ -20,8 +18,6 @@ const ArticleLoader = (props: JSX.IntrinsicAttributes & IContentLoaderProps) => 
   <ContentLoader
     className={'loader'}
     speed={2}
-    width={282}
-    height={213}
     viewBox="0 0 282 213"
     backgroundColor="#f3f3f3"
     foregroundColor="#ecebeb"
@@ -37,8 +33,6 @@ const ActualArticleLoader = (props: JSX.IntrinsicAttributes & IContentLoaderProp
   <ContentLoader
     className={'loader'}
     speed={2}
-    width={282}
-    height={72}
     viewBox="0 0 282 72"
     backgroundColor="#f3f3f3"
     foregroundColor="#ecebeb"
@@ -62,4 +56,16 @@ const MainListLoader = () => {
   );
 };
 
-export { CarouselLoader, ArticleLoader, ActualArticleLoader, MainListLoader };
+const MagazineLoader = (props: JSX.IntrinsicAttributes & IContentLoaderProps) => (
+  <ContentLoader
+    speed={2}
+    viewBox="0 0 400 120"
+    backgroundColor="#f3f3f3"
+    foregroundColor="#ecebeb"
+    {...props}
+  >
+    <rect x="0" y="0" rx="5" ry="5" width="400" height="120" />
+  </ContentLoader>
+);
+
+export { CarouselLoader, ArticleLoader, ActualArticleLoader, MainListLoader, MagazineLoader };

@@ -1,4 +1,4 @@
-import useDownloader from 'react-use-downloader';
+// import useDownloader from 'react-use-downloader';
 import useTranslation from '@/hooks/useTranslation';
 import { IMagazine } from '@/types/types';
 import dateFormetter from '@/utils/dateFormatter';
@@ -12,7 +12,7 @@ export default function NewspaperIssueItem({ magazine }: NewsPaperIssueProps) {
   const { name, created_at, hajmi, downloads_count, file } = magazine;
   const t = useTranslation();
 
-  const { download, isInProgress } = useDownloader();
+  // const { download } = useDownloader();
   return (
     <div className="newspaper-issue__item">
       <div className="newspaper-issue__item__content">
@@ -21,14 +21,16 @@ export default function NewspaperIssueItem({ magazine }: NewsPaperIssueProps) {
           <p>{t(`Qo’shildi: ${dateFormetter(created_at)}`)}</p>
           <p>{t(`Hajmi ${hajmi}`)}</p>
           <p>{t(`Yuklab olishdi: ${downloads_count}`)}</p>
-          <p>Download is in {isInProgress ? 'in progress' : 'stopped'}</p>
         </div>
       </div>
       <div className="newspaper-issue__item__btn-wrapper">
-        <Button className="btn--download" onClick={() => download(file, `${name}.pdf`)}>
+        {/* <Button className="btn--download" onClick={() => download(file, `${name}.pdf`)}>
+          <span>{t('Yuklab olish')}</span>
+        </Button> */}
+        <Button className="btn--download" target="_blank" href={file}>
           <span>{t('Yuklab olish')}</span>
         </Button>
-        <Button className="btn--download btn--download-white" target="_blank" href={file}>
+        <Button className="btn--download btn--download-white" href={file}>
           <span>{t('O`qish')}</span>
         </Button>
       </div>

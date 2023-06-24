@@ -1,10 +1,11 @@
 import useTranslation from '@/hooks/useTranslation';
 import { useGetAllMagazinesQuery } from '@/redux/apiSlice';
+import { MagazineLoader } from './Loader';
 import NewspaperIssueItem from './NewspaperIssueItem';
 
 export default function NewspaperIssue() {
   const t = useTranslation();
-  const { data: allMagazines } = useGetAllMagazinesQuery();
+  const { data: allMagazines, isFetching } = useGetAllMagazinesQuery();
 
   return (
     <div className="newspaper-issue">
@@ -17,6 +18,12 @@ export default function NewspaperIssue() {
       <div className="newspaper-issue__grid">
         {allMagazines &&
           allMagazines.results.map((item) => <NewspaperIssueItem key={item.id} magazine={item} />)}
+        {isFetching && (
+          <>
+            <MagazineLoader uniqueKey={'for-magazine'} />
+            <MagazineLoader uniqueKey={'for-magazine'} />
+          </>
+        )}
       </div>
     </div>
   );
