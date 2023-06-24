@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import modalReducer from './modalSlice';
 import { settingsReducer, settingsSlice } from './settings';
-import postsReducer from './posts';
 import { nextReduxCookieMiddleware, wrapMakeStore } from 'next-redux-cookie-wrapper';
 import { COOKIE_MAX_AGE, LANGUAGE_COOKIE } from '@/constants/constants';
 import { createWrapper } from 'next-redux-wrapper';
@@ -13,7 +12,6 @@ const makeStore = wrapMakeStore(() =>
     reducer: {
       modal: modalReducer,
       settings: settingsReducer,
-      posts: postsReducer,
       [apiSlice.reducerPath]: apiSlice.reducer,
       [magazinesSlice.reducerPath]: magazinesSlice.reducer,
     },

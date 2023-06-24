@@ -18,7 +18,6 @@ export default function Document() {
           name="keywords"
           content="Bobotog&#39; tongi, Боботоғ тонги, Bobotog&#39; tongi gazetasi, Боботоғ тонги газетаси, Uzun tumani gazetasi, Узун тумани газета, Uzun tumani yangiliklari"
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <body>
