@@ -72,6 +72,7 @@ export interface IArticle {
   slug: string;
   views: number;
   postimage_set: TImage[];
+  author: string;
 }
 
 export interface IPost extends IArticle {

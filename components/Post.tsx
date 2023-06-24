@@ -10,7 +10,7 @@ type PostProps = {
 export default function Post({ post }: PostProps) {
   const contentRef = useRef<HTMLDivElement | null>(null);
   const t = useTranslation();
-  const { title, postimage_set, content } = post;
+  const { title, postimage_set, content, author } = post;
   const imageUrls = postimage_set.map((item) => item.image);
   return (
     <div className="post">
@@ -23,7 +23,7 @@ export default function Post({ post }: PostProps) {
         ref={contentRef}
         dangerouslySetInnerHTML={createMarkup(t(content, 'tag'))}
       ></div>
-      {/* <h4 className="post__author">{t(post?.author)}</h4> */}
+      <h4 className="post__author">{t(author)}</h4>
     </div>
   );
 }
