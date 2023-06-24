@@ -1,5 +1,5 @@
 import useTranslation from '@/hooks/useTranslation';
-import { useGetAllMagazinesQuery } from '@/redux/apiSlice';
+import { useGetAllMagazinesQuery } from '@/redux/magazines';
 import { MagazineLoader } from './Loader';
 import NewspaperIssueItem from './NewspaperIssueItem';
 

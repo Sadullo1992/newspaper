@@ -6,6 +6,7 @@ import { nextReduxCookieMiddleware, wrapMakeStore } from 'next-redux-cookie-wrap
 import { COOKIE_MAX_AGE, LANGUAGE_COOKIE } from '@/constants/constants';
 import { createWrapper } from 'next-redux-wrapper';
 import { apiSlice } from './apiSlice';
+import { magazinesSlice } from './magazines';
 
 const makeStore = wrapMakeStore(() =>
   configureStore({
@@ -14,6 +15,7 @@ const makeStore = wrapMakeStore(() =>
       settings: settingsReducer,
       posts: postsReducer,
       [apiSlice.reducerPath]: apiSlice.reducer,
+      [magazinesSlice.reducerPath]: magazinesSlice.reducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware()
@@ -32,7 +34,7 @@ const makeStore = wrapMakeStore(() =>
             ],
           })
         )
-        .concat(apiSlice.middleware),
+        .concat(apiSlice.middleware, magazinesSlice.middleware),
   })
 );
 
