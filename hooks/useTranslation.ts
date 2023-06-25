@@ -1,6 +1,8 @@
-import { krillga, lotinga } from '@/lib/lotintokrill';
+import Transliterator from 'lotin-kirill';
 import { useAppSelector } from '@/redux/hooks';
 import { selectSettings } from '@/redux/settings';
+
+const transliterator = new Transliterator();
 
 export default function useTranslation() {
   const { language } = useAppSelector(selectSettings);
@@ -10,9 +12,9 @@ export default function useTranslation() {
     let translation;
 
     if (language === 'krill') {
-      translation = krillga(translationText);
+      translation = transliterator.textToCyrillic(translationText);
     } else {
-      translation = lotinga(translationText);
+      translation = transliterator.textToLatin(translationText);
     }
 
     return translation;
