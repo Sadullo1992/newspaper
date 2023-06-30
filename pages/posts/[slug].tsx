@@ -1,11 +1,10 @@
 import ActualList from '@/components/ActualList';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { IArticle } from '@/types/types';
 import RealatedNews from '@/components/RelatedNews';
 import Post from '@/components/Post';
 import useTranslation from '@/hooks/useTranslation';
-import { useGetAllPostsQuery, useGetPostByIdQuery } from '@/redux/apiSlice';
+import { useGetPostByIdQuery } from '@/redux/apiSlice';
 import { CarouselLoader } from '@/components/Loader';
 import ErrorMessage from '@/components/ErrorMessage';
 
@@ -14,17 +13,13 @@ export default function PostPage() {
   const {
     query: { slug },
   } = useRouter();
-  const { data: allPosts, isError } = useGetAllPostsQuery();
-  const { id, title } = allPosts?.results.find((item: IArticle) => item.slug === slug) ?? {
-    id: '',
-    title: 'Maqola',
-  };
-  const { data: post, isFetching } = useGetPostByIdQuery(id, { skip: !id });
+  const postSlug: string | string[] = slug ?? '';
+  const { data: post, isFetching, isError } = useGetPostByIdQuery(postSlug, { skip: !postSlug });
   if (isError) return <ErrorMessage />;
   return (
     <>
       <Head>
-        <title>{t(title)}</title>
+        <title>{t(post?.title)}</title>
       </Head>
       <section className="posts-page">
         <div className="container">
@@ -37,7 +32,7 @@ export default function PostPage() {
             </div>
             <ActualList />
           </div>
-          {post && <RealatedNews postId={post.id} />}
+          {post && <RealatedNews postId={post.slug} />}
         </div>
       </section>
     </>

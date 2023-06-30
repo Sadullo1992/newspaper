@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react';
+
 import Image from 'next/image';
 import { IArticle } from '@/types/types';
 import Link from 'next/link';
@@ -6,13 +8,32 @@ import dateFormetter from '@/utils/dateFormatter';
 
 type ArticleProps = {
   item: IArticle;
+  newLimit?: () => void;
+  isLast?: boolean;
+  isLastElement?: boolean;
 };
 
-export default function Article({ item }: ArticleProps) {
+export default function Article({ item, newLimit, isLast, isLastElement }: ArticleProps) {
+  const cardRef = useRef<HTMLAnchorElement | null>(null);
+  useEffect(() => {
+    if (!cardRef?.current) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (isLast && entry.isIntersecting && !isLastElement && newLimit) {
+        newLimit();
+        observer.unobserve(entry.target);
+      }
+    });
+
+    observer.observe(cardRef.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLast]);
+
   const t = useTranslation();
   const { slug, title, postimage_set: images, views, created_at } = item;
+
   return (
-    <Link href={`/posts/${slug}`} className="article">
+    <Link href={`/posts/${slug}`} className="article" ref={cardRef}>
       <Image
         src={images[0].image}
         height={504}

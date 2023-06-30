@@ -9,8 +9,8 @@ type RelatedNews = {
 
 export default function RealatedNews({ postId }: RelatedNews) {
   const t = useTranslation();
-  const { data, isFetching } = useGetRelatedPostsQuery(postId);
-  if (data && data?.results.length < 3) return null;
+  const { data, isFetching, isError } = useGetRelatedPostsQuery(postId);
+  if ((data && data?.results.length < 3) || isError) return null;
   return (
     <div className="related-news">
       <h2 className="related-news__title">{t('Mavzuga oid')}</h2>

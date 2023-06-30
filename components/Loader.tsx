@@ -46,13 +46,13 @@ const ActualArticleLoader = (props: JSX.IntrinsicAttributes & IContentLoaderProp
 
 const MainListLoader = () => {
   return (
-    <div className="latest-news__grid">
+    <>
       {Array(6)
         .fill(0)
         .map((_, index) => (
           <ArticleLoader key={index} uniqueKey={'for-article'} />
         ))}
-    </div>
+    </>
   );
 };
 
