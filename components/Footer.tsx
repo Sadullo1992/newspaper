@@ -57,10 +57,15 @@ export default function Footer() {
               {socialIcon('youtube')}
             </a>
           </div>
-          <div className="footer__author">
+          <a
+            href="https://www.uzunsoft.uz/"
+            target="_blank"
+            className="footer__author"
+            rel="noreferrer"
+          >
             <p className="footer__text">{t('Ishlab chiqaruvchi:')}</p>
             {authorLogo()}
-          </div>
+          </a>
         </div>
       </div>
     </footer>
