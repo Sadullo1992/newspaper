@@ -15,7 +15,6 @@ export const apiSlice = createApi({
         currentCache.results.push(...newItems.results);
       },
       forceRefetch({ currentArg, previousArg }) {
-        console.log(currentArg, previousArg);
         if (previousArg === undefined) previousArg = 0;
         if (currentArg === undefined) currentArg = 0;
         return currentArg > previousArg;
@@ -30,8 +29,8 @@ export const apiSlice = createApi({
     getAllCategories: builder.query<IResponse<ICategory[]>, void>({
       query: () => `/categories`,
     }),
-    getCategoryPosts: builder.query<IResponse<IArticle[]>, string>({
-      query: (id) => `/categories/${id}/posts`,
+    getCategoryPosts: builder.query<IResponse<IArticle[]>, { id: string; page: number }>({
+      query: ({ id, page }) => `/categories/${id}/posts?page=${page}`,
     }),
     getPostById: builder.query<IPost, string | string[]>({
       query: (slug) => `/posts/${slug}`,

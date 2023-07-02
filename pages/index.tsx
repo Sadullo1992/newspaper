@@ -40,7 +40,7 @@ export default function Home() {
               {allPosts &&
                 allPosts.results
                   ?.slice()
-                  .slice(1, 3)
+                  .slice(3, 5)
                   .map((item: IArticle) => <Article key={item.id} item={item} />)}
               {isLoading && (
                 <>
