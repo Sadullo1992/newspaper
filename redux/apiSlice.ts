@@ -35,8 +35,8 @@ export const apiSlice = createApi({
     getPostById: builder.query<IPost, string | string[]>({
       query: (slug) => `/posts/${slug}`,
     }),
-    getRelatedPosts: builder.query<IResponse<IArticle[]>, string>({
-      query: (id) => `/posts/${id}/related_posts`,
+    getRelatedPosts: builder.query<IResponse<IArticle[]>, { id: string; page: number }>({
+      query: ({ id, page }) => `/posts/${id}/related_posts?page=${page}`,
     }),
   }),
 });

@@ -1,7 +1,9 @@
 import useTranslation from '@/hooks/useTranslation';
 import { useGetRelatedPostsQuery } from '@/redux/apiSlice';
+import { IArticle } from '@/types/types';
+import { useEffect, useMemo, useState } from 'react';
 import Article from './Article';
-import { ArticleLoader } from './Loader';
+import { MainListLoader } from './Loader';
 
 type RelatedNews = {
   postId: string;
@@ -9,19 +11,40 @@ type RelatedNews = {
 
 export default function RealatedNews({ postId }: RelatedNews) {
   const t = useTranslation();
-  const { data, isFetching, isError } = useGetRelatedPostsQuery(postId);
-  if ((data && data?.results.length < 3) || isError) return null;
+  const [page, setPage] = useState(1);
+  const [posts, setPosts] = useState<IArticle[]>([]);
+
+  const { data, isFetching, isError } = useGetRelatedPostsQuery({ id: postId, page });
+
+  useEffect(() => {
+    if (data) {
+      setPosts((posts) => [...posts, ...data?.results]);
+    }
+  }, [data]);
+
+  useMemo(() => {
+    setPage(1);
+    setPosts([]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [postId]);
+
+  if ((data && data?.total < 3) || isError) return null;
   return (
     <div className="related-news">
       <h2 className="related-news__title">{t('Mavzuga oid')}</h2>
       <div className="related-news__grid">
-        {data?.results.map((item) => (
-          <Article key={item.id} item={item} />
-        ))}
-        {isFetching &&
-          Array(8)
-            .fill(0)
-            .map((_, index) => <ArticleLoader key={index} uniqueKey={'for-article'} />)}
+        {data &&
+          posts &&
+          [...new Set(posts)].map((item, index, arr) => (
+            <Article
+              key={item.id}
+              item={item}
+              isLast={index === arr.length - 1}
+              newLimit={() => setPage(page + 1)}
+              isLastElement={index === data.total - 1}
+            />
+          ))}
+        {isFetching && <MainListLoader />}
       </div>
     </div>
   );
