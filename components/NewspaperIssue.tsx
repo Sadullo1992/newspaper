@@ -1,11 +1,14 @@
 import useTranslation from '@/hooks/useTranslation';
 import { useGetAllMagazinesQuery } from '@/redux/magazines';
+import { useState } from 'react';
 import { MagazineLoader } from './Loader';
 import NewspaperIssueItem from './NewspaperIssueItem';
 
 export default function NewspaperIssue() {
   const t = useTranslation();
-  const { data: allMagazines, isFetching } = useGetAllMagazinesQuery();
+  const [page, setPage] = useState(1);
+
+  const { data: allMagazines, isFetching } = useGetAllMagazinesQuery(page);
 
   return (
     <div className="newspaper-issue">
@@ -17,7 +20,15 @@ export default function NewspaperIssue() {
       </p>
       <div className="newspaper-issue__grid">
         {allMagazines &&
-          allMagazines.results.map((item) => <NewspaperIssueItem key={item.id} magazine={item} />)}
+          allMagazines.results.map((item, index, arr) => (
+            <NewspaperIssueItem
+              key={item.id}
+              magazine={item}
+              isLast={index === arr.length - 1}
+              newLimit={() => setPage(page + 1)}
+              isLastElement={index === allMagazines.total - 1}
+            />
+          ))}
         {isFetching && (
           <>
             <MagazineLoader uniqueKey={'for-magazine'} />

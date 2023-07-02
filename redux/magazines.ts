@@ -7,18 +7,26 @@ export const magazinesSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   tagTypes: ['magazines'],
   endpoints: (builder) => ({
-    getAllMagazines: builder.query<IResponse<IMagazine[]>, void>({
-      query: () => `/magazines`,
+    getAllMagazines: builder.query<IResponse<IMagazine[]>, number>({
+      query: (page) => `/magazines?page_size=4&page=${page}`,
+      serializeQueryArgs: ({ endpointName }) => {
+        return endpointName;
+      },
+      merge: (currentCache, newItems) => {
+        currentCache.results.push(...newItems.results);
+      },
+      forceRefetch({ currentArg, previousArg }) {
+        if (previousArg === undefined) previousArg = 0;
+        if (currentArg === undefined) currentArg = 0;
+        return currentArg > previousArg;
+      },
       providesTags: (result) =>
-        // is result available?
         result
-          ? // successful query
-            [
+          ? [
               ...result.results.map(({ id }) => ({ type: 'magazines', id } as const)),
               { type: 'magazines', id: 'LIST' },
             ]
-          : // an error occurred, but we still want to refetch this query when `{ type: 'magazines', id: 'LIST' }` is invalidated
-            [{ type: 'magazines', id: 'LIST' }],
+          : [{ type: 'magazines', id: 'LIST' }],
     }),
     addMagazineDownloadCount: builder.mutation<void, number>({
       query(id) {
