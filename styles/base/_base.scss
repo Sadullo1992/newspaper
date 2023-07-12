@@ -24,36 +24,6 @@ main {
   }
 }
 
-.test__wrapper {
-  overflow-x: hidden;
-}
-.test {
-  padding-top: 16px;
-  color: $dark;
-  animation-name: textround;
-  animation-duration: 30s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  animation-delay: 0.5s;
-  transform: translateX(-100%);
-  display: inline-block;
-  white-space: nowrap;
-  @include tablet {
-    animation-duration: 15s;
-    padding-top: 0;
-    padding-bottom: 16px;
-  }
-}
-
-@keyframes textround {
-  0% {
-    transform: translateX(100vw);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
 .loader {
   width: 100%;
   object-fit: contain;
