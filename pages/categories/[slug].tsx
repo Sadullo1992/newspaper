@@ -20,8 +20,6 @@ export default function Category() {
 
   const { data: category, isError } = useGetCategoryBySlugQuery(slug);
 
-  if (isError) return <ErrorMessage />;
-
   const { data, isFetching } = useGetCategoryPostsQuery({ slug, page }, { skip: !slug });
 
   useEffect(() => {
@@ -34,7 +32,9 @@ export default function Category() {
     setPage(1);
     setPosts([]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [slug]);  
+  }, [slug]);
+
+  if (isError) return <ErrorMessage />;
 
   if (slug === 'gazetamiz-nashrlari') {
     return (

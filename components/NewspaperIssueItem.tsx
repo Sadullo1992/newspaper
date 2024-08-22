@@ -1,7 +1,7 @@
 import useDownloader from 'react-use-downloader';
 import useTranslation from '@/hooks/useTranslation';
 import { IMagazine } from '@/types/types';
-import dateFormetter from '@/utils/dateFormatter';
+// import dateFormetter from '@/utils/dateFormatter';
 import Button from './Button';
 import Spinner from './Spinner';
 import { useAddMagazineDownloadCountMutation } from '@/redux/magazines';
