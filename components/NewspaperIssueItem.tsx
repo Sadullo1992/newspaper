@@ -6,6 +6,7 @@ import Button from './Button';
 import Spinner from './Spinner';
 import { useAddMagazineDownloadCountMutation } from '@/redux/magazines';
 import { useEffect, useRef } from 'react';
+import { BASE_URL } from '@/constants/constants';
 
 type NewsPaperIssueProps = {
   magazine: IMagazine;
@@ -35,33 +36,39 @@ export default function NewspaperIssueItem({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLast]);
 
-  const { id, name, created_at, hajmi, downloads_count, file } = magazine;
+  const { id, name, createdAt, size, downloadsCount, filename } = magazine;
   const t = useTranslation();
 
   const { download, isInProgress, error } = useDownloader();
   const [addMagazineDownloadCount] = useAddMagazineDownloadCountMutation();
 
   const handleDownload = () => {
-    download(file, `${name}.pdf`);
+    download(`${BASE_URL}/media/magazines/${filename}`, `${filename}.pdf`);
     if (!isInProgress && !error) {
       addMagazineDownloadCount(id);
     }
+    addMagazineDownloadCount(id);
   };
   return (
     <div className="newspaper-issue__item" ref={cardRef}>
       <div className="newspaper-issue__item__content">
         <h4 className="newspaper-issue__item__title">{t(name)}</h4>
         <div className="newspaper-issue__item__content__desc">
-          <p>{t(`Qo’shildi: ${dateFormetter(created_at)}`)}</p>
-          <p>{t(`Hajmi ${hajmi}`)}</p>
-          <p>{t(`Yuklab olishdi: ${downloads_count}`)}</p>
+          <p>{t(`Qo’shildi: ${createdAt}`)}</p>
+          {/* <p>{t(`Qo’shildi: ${dateFormetter(createdAt)}`)}</p> */}
+          <p>{t(`Hajmi ${size}`)}</p>
+          <p>{t(`Yuklab olishdi: ${downloadsCount}`)}</p>
         </div>
       </div>
       <div className="newspaper-issue__item__btn-wrapper">
         <Button className="btn--download" onClick={handleDownload}>
           {isInProgress ? <Spinner /> : <span>{t('Yuklab olish')}</span>}
         </Button>
-        <Button className="btn--download btn--download-white" href={file} target="_blank">
+        <Button
+          className="btn--download btn--download-white"
+          href={`${BASE_URL}/media/magazines/${filename}`}
+          target="_blank"
+        >
           <span>{t('O`qish')}</span>
         </Button>
       </div>

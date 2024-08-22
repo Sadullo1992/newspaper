@@ -28,7 +28,7 @@ export const magazinesSlice = createApi({
             ]
           : [{ type: 'magazines', id: 'LIST' }],
     }),
-    addMagazineDownloadCount: builder.mutation<void, number>({
+    addMagazineDownloadCount: builder.mutation<void, string>({
       query(id) {
         return {
           url: `/magazines/${id}/download`,

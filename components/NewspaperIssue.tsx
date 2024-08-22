@@ -20,13 +20,13 @@ export default function NewspaperIssue() {
       </p>
       <div className="newspaper-issue__grid">
         {allMagazines &&
-          allMagazines.results.map((item, index, arr) => (
+          allMagazines.data.map((item, index, arr) => (
             <NewspaperIssueItem
               key={item.id}
               magazine={item}
               isLast={index === arr.length - 1}
               newLimit={() => setPage(page + 1)}
-              isLastElement={index === allMagazines.total - 1}
+              isLastElement={index === allMagazines.meta.total - 1}
             />
           ))}
         {isFetching && (
