@@ -15,34 +15,38 @@ export interface ICategory {
 }
 
 export interface IResponse<T> {
-  links: {
-    next: null;
-    previous: null;
+  data: T[];
+  meta: {
+    total: number;
+    lastPage: number;
+    currentPage: number;
+    perPage: number;
+    prev: number | null;
+    next: number | null;
   };
-  total: number;
-  page: number;
-  page_size: number;
-  results: T;
 }
 
 export type TImage = {
-  id: number;
-  image: string;
-  video: string;
+  id: string;
+  imagename: string;
+  imageSize: string;
+  postId: string;
 };
 
 export interface IArticle {
   id: string;
   title: string;
+  content: string;
+  categoryId: string | null;
   category: ICategory;
-  created_at: string;
-  updated_at: string;
-  dolzarb: boolean;
-  is_featured: boolean;
   slug: string;
+  createdAt: number;
+  updatedAt: number;
+  isActual: boolean;
+  isFeatured: boolean;
   views: number;
-  postimage_set: TImage[];
-  author: string;
+  images: TImage[];
+  author: string | null;
 }
 
 export interface IPost extends IArticle {
@@ -50,10 +54,10 @@ export interface IPost extends IArticle {
 }
 
 export interface IMagazine {
-  id: number;
+  id: string;
   name: string;
-  created_at: string;
-  file: string;
-  hajmi: string;
-  downloads_count: number;
+  createdAt: number;
+  filename: string;
+  size: number;
+  downloadsCount: number;
 }

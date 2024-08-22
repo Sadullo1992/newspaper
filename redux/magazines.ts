@@ -7,13 +7,13 @@ export const magazinesSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   tagTypes: ['magazines'],
   endpoints: (builder) => ({
-    getAllMagazines: builder.query<IResponse<IMagazine[]>, number>({
-      query: (page) => `/magazines?page_size=4&page=${page}`,
+    getAllMagazines: builder.query<IResponse<IMagazine>, number>({
+      query: (page) => `/magazines?perPage=4&page=${page}`,
       serializeQueryArgs: ({ endpointName }) => {
         return endpointName;
       },
       merge: (currentCache, newItems) => {
-        currentCache.results.push(...newItems.results);
+        currentCache.data.push(...newItems.data);
       },
       forceRefetch({ currentArg, previousArg }) {
         if (previousArg === undefined) previousArg = 0;
@@ -23,7 +23,7 @@ export const magazinesSlice = createApi({
       providesTags: (result) =>
         result
           ? [
-              ...result.results.map(({ id }) => ({ type: 'magazines', id } as const)),
+              ...result.data.map(({ id }) => ({ type: 'magazines', id } as const)),
               { type: 'magazines', id: 'LIST' },
             ]
           : [{ type: 'magazines', id: 'LIST' }],
