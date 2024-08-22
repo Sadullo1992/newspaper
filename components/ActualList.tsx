@@ -10,7 +10,7 @@ export default function ActualList() {
     <div className="actual-news main-grid__item2">
       <h3 className="actual-news__title">{t('Dolzarb')}</h3>
       <div className="actual-news__grid">
-        {actualPosts?.results.map((item) => (
+        {actualPosts?.data.map((item) => (
           <ActualArticle key={item.id} item={item} />
         ))}
         {isFetching &&

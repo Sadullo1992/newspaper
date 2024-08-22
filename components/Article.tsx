@@ -4,7 +4,8 @@ import Image from 'next/image';
 import { IArticle } from '@/types/types';
 import Link from 'next/link';
 import useTranslation from '@/hooks/useTranslation';
-import dateFormetter from '@/utils/dateFormatter';
+import { BASE_URL } from '@/constants/constants';
+// import dateFormetter from '@/utils/dateFormatter';
 
 type ArticleProps = {
   item: IArticle;
@@ -30,12 +31,12 @@ export default function Article({ item, newLimit, isLast, isLastElement }: Artic
   }, [isLast]);
 
   const t = useTranslation();
-  const { slug, title, postimage_set: images, views, created_at } = item;
+  const { slug, title, images, views, createdAt } = item;
 
   return (
     <Link href={`/posts/${slug}`} className="article" ref={cardRef}>
       <Image
-        src={images[0].image}
+        src={`${BASE_URL}/media/images/${images[0].imagename}`}
         height={504}
         width={894}
         alt="article photo"
@@ -49,7 +50,8 @@ export default function Article({ item, newLimit, isLast, isLastElement }: Artic
             {views} {t('kishi o‘qidi')}
           </span>
           <span>/</span>
-          <span>{dateFormetter(created_at)}</span>
+          <span>{createdAt}</span>
+          {/* <span>{dateFormetter(createdAt)}</span> */}
         </div>
       </div>
     </Link>

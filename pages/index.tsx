@@ -31,14 +31,14 @@ export default function Home() {
         <div className="container">
           <div className="intro main-grid">
             <div className="intro__slider main-grid__item1">
-              {allFeaturedPosts && <Carousel posts={allFeaturedPosts.results} />}
+              {allFeaturedPosts && <Carousel posts={allFeaturedPosts.data} />}
               {isFetching && (
                 <CarouselLoader uniqueKey={'for-carousel'} className="carousel__item__photo" />
               )}
             </div>
             <div className="intro__articles main-grid__item2">
               {allPosts &&
-                allPosts.results
+                allPosts.data
                   ?.slice()
                   .slice(3, 5)
                   .map((item: IArticle) => <Article key={item.id} item={item} />)}
@@ -55,13 +55,13 @@ export default function Home() {
               <h2 className="latest-news__title">{t('Eng so‘ngi yangiliklar')}</h2>
               <div className="latest-news__grid">
                 {allPosts &&
-                  allPosts.results.map((item, index, arr) => (
+                  allPosts.data.map((item, index, arr) => (
                     <Article
                       key={item.id}
                       item={item}
                       isLast={index === arr.length - 1}
                       newLimit={() => setPage(page + 1)}
-                      isLastElement={index === allPosts.total - 1}
+                      isLastElement={index === allPosts.meta.total - 1}
                     />
                   ))}
                 {isAllPostFetching && <MainListLoader />}
