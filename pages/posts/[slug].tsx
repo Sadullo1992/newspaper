@@ -1,7 +1,7 @@
 import ActualList from '@/components/ActualList';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import RealatedNews from '@/components/RelatedNews';
+import RelatedNews from '@/components/RelatedNews';
 import Post from '@/components/Post';
 import useTranslation from '@/hooks/useTranslation';
 import { useGetPostByIdQuery } from '@/redux/apiSlice';
@@ -32,7 +32,7 @@ export default function PostPage() {
             </div>
             <ActualList />
           </div>
-          {post && <RealatedNews postId={post.slug} />}
+          {post && <RelatedNews slug={post.slug} />}
         </div>
       </section>
     </>

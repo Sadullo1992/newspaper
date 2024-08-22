@@ -46,7 +46,7 @@ export interface IArticle {
   isFeatured: boolean;
   views: number;
   images: TImage[];
-  author: string | null;
+  author?: string;
 }
 
 export interface IPost extends IArticle {

@@ -6,19 +6,19 @@ import Article from './Article';
 import { MainListLoader } from './Loader';
 
 type RelatedNews = {
-  postId: string;
+  slug: string;
 };
 
-export default function RealatedNews({ postId }: RelatedNews) {
+export default function RelatedNews({ slug }: RelatedNews) {
   const t = useTranslation();
   const [page, setPage] = useState(1);
   const [posts, setPosts] = useState<IArticle[]>([]);
 
-  const { data, isFetching, isError } = useGetRelatedPostsQuery({ id: postId, page });
+  const { data, isFetching, isError } = useGetRelatedPostsQuery({ slug, page });
 
   useEffect(() => {
     if (data) {
-      setPosts((posts) => [...posts, ...data?.results]);
+      setPosts((posts) => [...posts, ...data?.data]);
     }
   }, [data]);
 
@@ -26,9 +26,9 @@ export default function RealatedNews({ postId }: RelatedNews) {
     setPage(1);
     setPosts([]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [postId]);
+  }, [slug]);
 
-  if ((data && data?.total < 3) || isError) return null;
+  if ((data && data?.meta.total < 3) || isError) return null;
   return (
     <div className="related-news">
       <h2 className="related-news__title">{t('Mavzuga oid')}</h2>
@@ -41,7 +41,7 @@ export default function RealatedNews({ postId }: RelatedNews) {
               item={item}
               isLast={index === arr.length - 1}
               newLimit={() => setPage(page + 1)}
-              isLastElement={index === data.total - 1}
+              isLastElement={index === data.meta.total - 1}
             />
           ))}
         {isFetching && <MainListLoader />}

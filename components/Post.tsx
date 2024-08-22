@@ -9,8 +9,8 @@ type PostProps = {
 
 export default function Post({ post }: PostProps) {
   const t = useTranslation();
-  const { title, postimage_set, content, author } = post;
-  const imageUrls = postimage_set.map((item) => item.image);
+  const { title, images, content, author } = post;
+  const imageUrls = images.map((item) => item.imagename);
   return (
     <div className="post">
       <div className="post__slider">
