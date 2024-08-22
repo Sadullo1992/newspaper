@@ -29,6 +29,9 @@ export const apiSlice = createApi({
     getAllCategories: builder.query<ICategory[], void>({
       query: () => `/categories`,
     }),
+    getCategoryBySlug: builder.query<ICategory, string | string[] | undefined>({
+      query: (slug) => `/categories/${slug}`,
+    }),
     getCategoryPosts: builder.query<
       IResponse<IArticle>,
       { slug: string | string[] | undefined; page: number }
@@ -52,4 +55,5 @@ export const {
   useGetCategoryPostsQuery,
   useGetPostByIdQuery,
   useGetRelatedPostsQuery,
+  useGetCategoryBySlugQuery,
 } = apiSlice;

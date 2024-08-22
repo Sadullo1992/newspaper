@@ -1,9 +1,9 @@
 import ActualList from '@/components/ActualList';
-import { IArticle, ICategory } from '@/types/types';
+import { IArticle } from '@/types/types';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import useTranslation from '@/hooks/useTranslation';
-import { useGetAllCategoriesQuery, useGetCategoryPostsQuery } from '@/redux/apiSlice';
+import { useGetCategoryBySlugQuery, useGetCategoryPostsQuery } from '@/redux/apiSlice';
 import { MainListLoader } from '@/components/Loader';
 import NewspaperIssue from '@/components/NewspaperIssue';
 import ErrorMessage from '@/components/ErrorMessage';
@@ -17,16 +17,16 @@ export default function Category() {
   const {
     query: { slug },
   } = useRouter();
-  const { data: allCategories, isError } = useGetAllCategoriesQuery();
-  const { id, name } = allCategories?.results.find((item: ICategory) => item.slug === slug) ?? {
-    id: '',
-    name: 'Gazeta bo`limlari',
-  };
-  const { data, isFetching } = useGetCategoryPostsQuery({ id, page }, { skip: !id });
+
+  const { data: category, isError } = useGetCategoryBySlugQuery(slug);
+
+  if (isError) return <ErrorMessage />;
+
+  const { data, isFetching } = useGetCategoryPostsQuery({ slug, page }, { skip: !slug });
 
   useEffect(() => {
     if (data) {
-      setPosts((posts) => [...posts, ...data?.results]);
+      setPosts((posts) => [...posts, ...data?.data]);
     }
   }, [data]);
 
@@ -34,9 +34,7 @@ export default function Category() {
     setPage(1);
     setPosts([]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
-
-  if (isError) return <ErrorMessage />;
+  }, [slug]);  
 
   if (slug === 'gazetamiz-nashrlari') {
     return (
@@ -56,13 +54,13 @@ export default function Category() {
   return (
     <>
       <Head>
-        <title>{t(`${name}ga oid maqolalar`)}</title>
+        <title>{t(`${category?.name}ga oid maqolalar`)}</title>
       </Head>
       <section className="category-page">
         <div className="container">
           <div className="main-grid">
             <div className="latest-news main-grid__item1">
-              <h2 className="latest-news__title">{t(`${name}ga oid maqolalar`)}</h2>
+              <h2 className="latest-news__title">{t(`${category?.name}ga oid maqolalar`)}</h2>
               <div className="latest-news__grid">
                 {data &&
                   posts &&
@@ -72,7 +70,7 @@ export default function Category() {
                       item={item}
                       isLast={index === arr.length - 1}
                       newLimit={() => setPage(page + 1)}
-                      isLastElement={index === data.total - 1}
+                      isLastElement={index === data.meta.total - 1}
                     />
                   ))}
                 {isFetching && <MainListLoader />}
