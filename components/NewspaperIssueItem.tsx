@@ -7,6 +7,7 @@ import Spinner from './Spinner';
 import { useAddMagazineDownloadCountMutation } from '@/redux/magazines';
 import { useEffect, useRef } from 'react';
 import { BASE_URL } from '@/constants/constants';
+import { byteToMB } from '@/utils/byteToMB';
 
 type NewsPaperIssueProps = {
   magazine: IMagazine;
@@ -55,7 +56,7 @@ export default function NewspaperIssueItem({
         <h4 className="newspaper-issue__item__title">{t(name)}</h4>
         <div className="newspaper-issue__item__content__desc">
           <p>{t(`Qo’shildi: ${dateFormatter(createdAt)}`)}</p>
-          <p>{t(`Hajmi ${size}`)}</p>
+          <p>{t(`Hajmi: ${byteToMB(size)}`)}</p>
           <p>{t(`Yuklab olishdi: ${downloadsCount}`)}</p>
         </div>
       </div>
