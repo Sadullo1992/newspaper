@@ -5,7 +5,7 @@ import { IArticle } from '@/types/types';
 import Link from 'next/link';
 import useTranslation from '@/hooks/useTranslation';
 import { BASE_URL } from '@/constants/constants';
-// import dateFormetter from '@/utils/dateFormatter';
+import dateFormatter from '@/utils/dateFormatter';
 
 type ArticleProps = {
   item: IArticle;
@@ -50,8 +50,7 @@ export default function Article({ item, newLimit, isLast, isLastElement }: Artic
             {views} {t('kishi o‘qidi')}
           </span>
           <span>/</span>
-          <span>{createdAt}</span>
-          {/* <span>{dateFormetter(createdAt)}</span> */}
+          <span>{dateFormatter(createdAt)}</span>
         </div>
       </div>
     </Link>

@@ -1,7 +1,7 @@
 import useDownloader from 'react-use-downloader';
 import useTranslation from '@/hooks/useTranslation';
 import { IMagazine } from '@/types/types';
-// import dateFormetter from '@/utils/dateFormatter';
+import dateFormatter from '@/utils/dateFormatter';
 import Button from './Button';
 import Spinner from './Spinner';
 import { useAddMagazineDownloadCountMutation } from '@/redux/magazines';
@@ -54,8 +54,7 @@ export default function NewspaperIssueItem({
       <div className="newspaper-issue__item__content">
         <h4 className="newspaper-issue__item__title">{t(name)}</h4>
         <div className="newspaper-issue__item__content__desc">
-          <p>{t(`Qo’shildi: ${createdAt}`)}</p>
-          {/* <p>{t(`Qo’shildi: ${dateFormetter(createdAt)}`)}</p> */}
+          <p>{t(`Qo’shildi: ${dateFormatter(createdAt)}`)}</p>
           <p>{t(`Hajmi ${size}`)}</p>
           <p>{t(`Yuklab olishdi: ${downloadsCount}`)}</p>
         </div>

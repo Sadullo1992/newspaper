@@ -14,6 +14,7 @@
     "@types/node": "20.2.5",
     "@types/react": "18.2.7",
     "@types/react-dom": "18.2.4",
+    "date-fns": "^3.6.0",
     "html-react-parser": "^4.0.0",
     "lotin-kirill": "^0.1.3",
     "next": "13.4.4",
